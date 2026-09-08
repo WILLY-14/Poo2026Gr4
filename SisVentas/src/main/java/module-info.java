@@ -4,6 +4,8 @@ module pe.edu.upeu.sisventas {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
+    requires static lombok;
+    requires jakarta.validation;
 
     opens pe.edu.upeu.sisventas to javafx.fxml;
     exports pe.edu.upeu.sisventas;
