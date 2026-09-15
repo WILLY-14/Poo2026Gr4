@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sisventas.controller.ProductoController">
    <children>
@@ -10,9 +11,12 @@
          <children>
             <AnchorPane prefWidth="200.0">
                <children>
-                  <Label layoutX="32.0" layoutY="30.0" text="Gestionar Producto" textFill="#d31111" />
-                  <Label layoutX="271.0" layoutY="39.0" text="Filtrar Producto" />
-                  <TextField layoutX="271.0" layoutY="68.0" />
+                  <Label layoutX="14.0" layoutY="30.0" text="Gestionar Producto" textFill="#4213d1">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+                  <Label layoutX="271.0" layoutY="41.0" text="Filtrar Producto" />
+                  <TextField layoutX="271.0" layoutY="68.0" prefHeight="18.0" prefWidth="150.0" />
                   <Button layoutX="432.0" layoutY="68.0" mnemonicParsing="false" text="Buscar" />
                </children>
                <padding>
@@ -50,13 +54,13 @@
                               <Label text="Nombre Producto" GridPane.rowIndex="2" />
                               <Label text="P Unid" GridPane.rowIndex="3" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label text="P Unid Old" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="P Unid Old" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                               <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
                               <Label text="Utilidad" GridPane.rowIndex="4" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Label text="Stoc" GridPane.rowIndex="5" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label text="Stoc Old" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Stoc Old" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                               <TextField GridPane.columnIndex="3" GridPane.rowIndex="5" />
                               <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
                               <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
