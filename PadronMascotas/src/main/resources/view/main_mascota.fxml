@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="miContenedor" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.padronmascotas.controller.MascotaController">
+   <children>
+      <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <children>
+
+            <HBox alignment="BOTTOM_LEFT" spacing="15.0">
+               <children>
+                  <Label text="Padrón de Animales Domésticos" textFill="#5d17df">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label text="Buscar (nombre o propietario)" />
+                        <TextField fx:id="txtFiltroDato" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label text="Filtrar por especie" />
+                        <ComboBox fx:id="cbxFiltroEspecie" prefWidth="130.0" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label text="Filtrar por vacunación" />
+                        <ComboBox fx:id="cbxFiltroVacunacion" prefWidth="130.0" />
+                     </children>
+                  </VBox>
+                  <Label fx:id="lblTotal" textFill="#1f3397">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
+
+                  <AnchorPane>
+                     <children>
+                        <GridPane hgap="5.0" layoutX="5.0" layoutY="5.0" vgap="5.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Registro de Mascota" GridPane.columnSpan="2147483647" />
+                              <Label text="Nombre mascota" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+                              <Label text="Especie" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cbxEspecie" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
+                              <Label text="Raza" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtRaza" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
+                              <Label text="Color" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtColor" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
+                              <Label text="Edad aprox. (años)" GridPane.rowIndex="5" />
+                              <Spinner fx:id="spEdad" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label text="Propietario" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtPropietario" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
+                              <Label text="Teléfono" GridPane.rowIndex="7" />
+                              <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
+                              <Label text="Vacunación" GridPane.rowIndex="8" />
+                              <RadioButton fx:id="rbAlDia" mnemonicParsing="false" text="Al día" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <RadioButton fx:id="rbPendiente" mnemonicParsing="false" text="Pendiente" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#validarFormulario" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearForm" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                              <Label fx:id="lbnMsg" maxWidth="1.7976931348623157E308" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="10" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+
+                  <AnchorPane HBox.hgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="tableView" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
