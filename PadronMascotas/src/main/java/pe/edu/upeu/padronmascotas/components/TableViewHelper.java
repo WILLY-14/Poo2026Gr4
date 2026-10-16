@@ -53,7 +53,7 @@ public class TableViewHelper<T> {
         }
 
         addActionColumn(tableView, updateAction, deleteAction);
-        // Ajustar el ancho del TableView según el contenido
+
         tableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
     }
 
@@ -65,15 +65,15 @@ public class TableViewHelper<T> {
             public TableCell<T, Void> call(final TableColumn<T, Void> param) {
                 final TableCell<T, Void> cell = new TableCell<>() {
 
-                    // Crear las imágenes
+
                     Image updateImage = new Image(getClass().getResource("/img/document-edit-icon.png").toExternalForm());
                     Image deleteImage = new Image(getClass().getResource("/img/del-icon.png").toExternalForm());
 
-                    // Crear ImageView para los botones
+
                     ImageView updateImageView = new ImageView(updateImage);
                     ImageView deleteImageView = new ImageView(deleteImage);
 
-                    // Crear botones con los íconos en lugar de texto
+
                     private final Button btnUpdate = new Button("", updateImageView);
                     private final Button btnDelete = new Button("", deleteImageView);
 
@@ -81,12 +81,12 @@ public class TableViewHelper<T> {
                     {
                         btnUpdate.setOnAction(event -> {
                             T data = getTableView().getItems().get(getIndex());
-                            updateAction.accept(data);  // Llama a la función pasada como parámetro para actualizar
+                            updateAction.accept(data);
                         });
 
                         btnDelete.setOnAction(event -> {
                             T data = getTableView().getItems().get(getIndex());
-                            deleteAction.accept(data);  // Llama a la función pasada como parámetro para eliminar
+                            deleteAction.accept(data);
                         });
                     }
 
@@ -119,4 +119,3 @@ public class TableViewHelper<T> {
     }
 
 }
-

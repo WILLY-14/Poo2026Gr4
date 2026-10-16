@@ -21,7 +21,6 @@ public class MascotaServiceImp extends CrudGenericoServiceImp<Mascota, Long> imp
         return mascotaRepository;
     }
 
-    // Llena el ComboBox con los valores del enum Especie (Perro, Gato, Otro)
     @Override
     public List<ComboBoxOption> listarEspecies() {
         List<ComboBoxOption> listar = new ArrayList<>();

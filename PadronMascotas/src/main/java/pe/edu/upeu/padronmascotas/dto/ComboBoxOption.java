@@ -1,4 +1,5 @@
 package pe.edu.upeu.padronmascotas.dto;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

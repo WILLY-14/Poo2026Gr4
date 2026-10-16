@@ -12,7 +12,7 @@
 
             <HBox alignment="BOTTOM_LEFT" spacing="15.0">
                <children>
-                  <Label text="Padrón de Animales Domésticos" textFill="#5d17df">
+                  <Label text="Padrón de Animales Domésticos" textFill="#cf620f">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

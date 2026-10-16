@@ -52,7 +52,7 @@ public class MascotaController {
     private final FilteredList<Mascota> filtrados = new FilteredList<>(listarMascota, m -> true);
     private final SortedList<Mascota> ordenados = new SortedList<>(filtrados);
     Mascota formulario;
-    Long idMascotaCE = 0L;   // 0 = mascota nueva; mayor a 0 = se está editando
+    Long idMascotaCE = 0L;
 
     private final ToltipCustom ttc = new ToltipCustom();
 
