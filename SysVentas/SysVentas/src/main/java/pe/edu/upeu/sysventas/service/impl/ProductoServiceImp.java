@@ -13,9 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class ProductoServiceImp extends CrudGenericoServiceImp<Producto, Long> implements IProductoService {
-
     private final ProductoRepository productoRepository;
-
     @Override
     protected ICrudGenericoRepository<Producto, Long> getRepo() {
         return productoRepository;
@@ -26,7 +24,7 @@ public class ProductoServiceImp extends CrudGenericoServiceImp<Producto, Long> i
         List<ComboBoxOption> listar = new ArrayList<>();
         for (TipoProducto tp : TipoProducto.values()) {
             ComboBoxOption cb = new ComboBoxOption();
-            cb.setKey(String.valueOf(tp.name()));
+            cb.setKey(tp.name());
             cb.setValue(tp.getDescripcion());
             listar.add(cb);
         }
@@ -35,10 +33,6 @@ public class ProductoServiceImp extends CrudGenericoServiceImp<Producto, Long> i
 
     @Override
     public List<Producto> findAll() {
-        if(productoRepository.findAll().isEmpty()) {
-            productoRepository.seedData();
-        }
         return productoRepository.findAll();
     }
-
 }

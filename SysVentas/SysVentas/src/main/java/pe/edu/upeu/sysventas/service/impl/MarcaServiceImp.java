@@ -11,19 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class MarcaServiceImp extends CrudGenericoServiceImp<Marca, Long>
-        implements IMarcaService {
-
+public class MarcaServiceImp extends CrudGenericoServiceImp<Marca, Long> implements IMarcaService {
     private final MarcaRepository marcaRepository;
     @Override
     protected ICrudGenericoRepository<Marca, Long> getRepo() {
         return marcaRepository;
     }
 
+    @Override
     public List<ComboBoxOption> listarCombobox() {
-        if(marcaRepository.findAll().isEmpty()) {
-            marcaRepository.seedData();
-        }
+
         List<ComboBoxOption> listar = new ArrayList<>();
         for (Marca m : marcaRepository.findAll()) {
             ComboBoxOption cb = new ComboBoxOption();
@@ -33,5 +30,4 @@ public class MarcaServiceImp extends CrudGenericoServiceImp<Marca, Long>
         }
         return listar;
     }
-
 }

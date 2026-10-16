@@ -59,7 +59,7 @@
 }
 
 .btn-danger:pressed {
-    -fx-background-color: #ea4958;
+    -fx-background-color: #b02a37;
 }
 
 /* =========================
@@ -79,5 +79,15 @@
     -fx-background-color: #ffcd39;
 }
 
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #a6ccf3;
+}
+
+#welcomeText {
+    -fx-text-fill: #91f458;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
 
 

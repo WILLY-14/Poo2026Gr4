@@ -1,30 +1,18 @@
 package pe.edu.upeu.sysventas.model;
 
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class Emisor {
-    private Long idEmisor;
-
-    private String ruc;
-
-    private String nombreComercial;
-
-    private String ubigeo;
-
-    private String domicilioFiscal;
-
-    private String urbanizacion;
-
-    private String departamento;
-
-    private String provincia;
-    private String distrito;
+    Long idEmisor;
+    String ruc;
+    String nombreComercial;
+    String ubigeo;
+    String domicilioFiscal;
+    String urbanizacion;
+    String departamento;
+    String provincia;
+    String distrito;
 }

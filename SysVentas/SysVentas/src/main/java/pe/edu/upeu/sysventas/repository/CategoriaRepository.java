@@ -3,30 +3,44 @@ package pe.edu.upeu.sysventas.repository;
 import pe.edu.upeu.sysventas.model.Categoria;
 import pe.edu.upeu.sysventas.model.Marca;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class CategoriaRepository extends AbstractJpaRepository<Categoria, Long>{
-    private long sequence=1;
 
     @Override
-    protected Long getId(Categoria entity) {
-        return entity.getIdCategoria();
+    protected String getTableName() {
+        return "categoria";
     }
 
     @Override
-    protected void setId(Categoria entity, Long id) {
+    protected String getPkColumn() {
+        return "id_categoria";
+    }
+
+    @Override
+    protected Categoria insert(Connection connection, Categoria entity) throws SQLException {
+        long id = executeInsertGetKey(connection,
+                "INSERT INTO categoria(nombre) VALUES(?)", entity.getNombre());
         entity.setIdCategoria(id);
+        return entity;
     }
 
     @Override
-    protected Long generateId() {
-        return sequence++;
+    protected Categoria updateRow(Connection connection, Categoria entity) throws SQLException {
+        executeUpdate(connection, "UPDATE categoria SET nombre=? WHERE id_categoria=?",
+                entity.getNombre(),
+                entity.getIdCategoria()
+        ); return entity;
+
     }
 
-    public void seedData() {
-        if (findAll().isEmpty()) {
-            save(new Categoria(generateId(), "Artefactos"));
-            save(new Categoria(generateId(),"Ropas"));
-        }
+    @Override
+    protected Categoria mapRow(ResultSet rs) throws SQLException {
+        return Categoria.builder()
+                .idCategoria(rs.getLong("id_categoria"))
+                .nombre(rs.getString("nombre"))
+                .build();
     }
-
-
 }

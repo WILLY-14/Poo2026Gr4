@@ -53,6 +53,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -79,6 +80,25 @@
             <artifactId>expressly</artifactId>
             <version>5.0.0</version>
         </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.4.240</version>
+        </dependency>
+        <!-- ===== HIKARICP — pool de conexiones ===== -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>6.3.0</version>
+        </dependency>
+        <!-- ===== LOGGING ===== -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.14</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -91,16 +111,13 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
-
                     <annotationProcessorPaths>
-                        <!-- Lombok Annotation Processor -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>1.18.46</version>
                         </path>
                     </annotationProcessorPaths>
-
                 </configuration>
             </plugin>
             <plugin>

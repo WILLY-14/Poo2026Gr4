@@ -1,0 +1,60 @@
+2026-10-15 23:30:07.586948-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:13.056343-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:14.737288-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:17.672144-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:22.202598-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:22.474801-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:22.914505-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:23.196496-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:23.412931-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:30:23.639389-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:31:34.806202-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:37:04.656183-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:37:05.268671-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:37:05.799736-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]
+2026-10-15 23:37:06.045350-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+MERGE INTO usuario (id_usuario, usuario, clave, estado, id_perfil) KEY (id_usuario)
+    VALUES (2, 'davidmp', '123456', 'ACTIVO', 1) [42104-240]

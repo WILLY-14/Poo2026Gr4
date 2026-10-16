@@ -5,8 +5,11 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import javafx.application.Platform;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -35,32 +38,26 @@ public class ProductoController {
     private final IUnidadMedidaService us;
 
     @FXML
-    TextField txtNombreProducto, txtPUnit,
-            txtPUnitOld, txtUtilidad, txtStock, txtStockOld, txtFiltroDato;
+    ComboBox<ComboBoxOption> cbxTipoProducto, cbxMarca,
+            cbxCategoria, cbxUnidMedida;
+
     @FXML
-    ComboBox<ComboBoxOption> cbxTipoProducto;
-    @FXML ComboBox<ComboBoxOption> cbxMarca;
-    @FXML ComboBox<ComboBoxOption> cbxCategoria;
-    @FXML ComboBox<ComboBoxOption> cbxUnidMedida;
+    TextField txtNombreProducto, txtPUnit, txtPUnitOld, txtUtilidad, txtStock, txtStockOld;
 
-    @FXML private TableView<Producto> tableView;
-
+    @FXML
+    TableView<Producto> tableView;
+    ObservableList<Producto> listaProducto;
+    Producto formulario;
+    Long idProductoCE=0L;
+    Stage stage;
     @FXML
     Label lbnMsg;
-    @FXML private AnchorPane miContenedor;
-    Stage stage;
-
+    @FXML
+    AnchorPane miContenedor;
     private Validator validator;
-    ObservableList<Producto> listarProducto;
-    Producto formulario;
-    Long idProductoCE = 0L;
-
     private final ToltipCustom ttc=new ToltipCustom();
 
-
-    @FXML
-    public void initialize(){
-        System.out.println("Holas");
+    @FXML public void initialize(){
         cbxTipoProducto.getItems().addAll(ps.listarTipoProducto());
         cbxMarca.getItems().addAll(ms.listarCombobox());
         cbxCategoria.getItems().addAll(cs.listarCombobox());
@@ -69,9 +66,8 @@ public class ProductoController {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
-        TableViewHelper<Producto> tableViewHelper = new TableViewHelper<>();
-
-        LinkedHashMap<String, ColumnInfo> columns = new LinkedHashMap<>();
+        TableViewHelper<Producto> tableViewHelper=new TableViewHelper<>();
+        LinkedHashMap<String, ColumnInfo> columns=new LinkedHashMap<>();
         columns.put("ID Pro.", new ColumnInfo("idProducto", 60.0));
         columns.put("Tipo Producto", new ColumnInfo("tipoProducto", 150.0));
         columns.put("Nombre Producto", new ColumnInfo("nombre", 200.0));
@@ -79,10 +75,11 @@ public class ProductoController {
         columns.put("Utilidad", new ColumnInfo("utilidad", 100.0));
         columns.put("Marca", new ColumnInfo("idMarca.nombre", 200.0));
         columns.put("Categoria", new ColumnInfo("idCategoria.nombre", 200.0));
+        Consumer<Producto> updateAction=producto -> {
+            editForm(producto);
+        };
 
-        Consumer<Producto> updateAction = producto ->{  editForm(producto); };
-        Consumer<Producto> deleteAction = producto -> {
-
+        Consumer<Producto> deleteAction=producto -> {
             stage = (Stage) miContenedor.getScene().getWindow();
             ps.delete(producto.getIdProducto());
             double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;
@@ -93,25 +90,21 @@ public class ProductoController {
         tableViewHelper.addColumnsInOrderWithSize(tableView, columns, updateAction, deleteAction);
         tableView.setTableMenuButtonVisible(true);
         listar();
-
     }
 
 
-    public void listar() {
+    public void listar(){
         try {
             tableView.getItems().clear();
-            listarProducto = FXCollections.observableArrayList(ps.findAll());
-            tableView.getItems().addAll(listarProducto);
-            //txtFiltroDato.textProperty().addListener((obs, o, n) -> filtrarProductos(n));
+            listaProducto= FXCollections.observableArrayList(ps.findAll());
+            tableView.getItems().addAll(listaProducto);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
-
     @FXML
-    public void validarFormulario() {
-        System.out.println("Holassss Formm");
+    public void onGuardar(Event e){
         formulario = new Producto();
         formulario.setNombre(txtNombreProducto.getText());
         formulario.setPu(parseDoubleSafe(txtPUnit.getText()));
@@ -136,7 +129,6 @@ public class ProductoController {
                 : cbxUnidMedida.getSelectionModel().getSelectedItem().getKey();
         formulario.setIdUnidad(idxUM.equals("0") ? null : us.findById(Long.parseLong(idxUM)));
 
-
         Set<ConstraintViolation<Producto>> violaciones = validator.validate(formulario);
         List<ConstraintViolation<Producto>> violacionesOrdenadas = violaciones.stream()
                 .sorted(Comparator.comparing(v -> v.getPropertyPath().toString())).toList();
@@ -147,6 +139,14 @@ public class ProductoController {
         } else {
             mostrarErroresValidacion(violacionesOrdenadas);
         }
+        /*if(idProductoCE!=0){
+            formulario.setIdProducto(idProductoCE);
+            ps.update(idProductoCE, formulario);
+            idProductoCE=0L;
+        }else {
+            ps.save(formulario);
+        }*/
+        System.out.println("Boton guardar?");
     }
 
     private double parseDoubleSafe(String value) {
@@ -154,7 +154,6 @@ public class ProductoController {
         try { return Double.parseDouble(value.trim()); }
         catch (NumberFormatException e) { return 0.0; }
     }
-
 
     public void clearForm() {
         txtNombreProducto.clear();
@@ -165,10 +164,8 @@ public class ProductoController {
         cbxCategoria.getSelectionModel().clearSelection();
         cbxUnidMedida.getSelectionModel().clearSelection();
         idProductoCE = 0L;
-        limpiarError();
+        //limpiarError();
     }
-
-
 
     public void editForm(Producto producto) {
         txtNombreProducto.setText(producto.getNombre());
@@ -188,20 +185,17 @@ public class ProductoController {
                 cbxMarca.getItems().stream()
                         .filter(m -> Long.parseLong(m.getKey()) == producto.getIdMarca().getIdMarca())
                         .findFirst().orElse(null));
-
         cbxCategoria.getSelectionModel().select(
                 cbxCategoria.getItems().stream()
                         .filter(c -> Long.parseLong(c.getKey()) == producto.getIdCategoria().getIdCategoria())
                         .findFirst().orElse(null));
-
         cbxUnidMedida.getSelectionModel().select(
                 cbxUnidMedida.getItems().stream()
                         .filter(u -> Long.parseLong(u.getKey()) == producto.getIdUnidad().getIdUnidad())
                         .findFirst().orElse(null));
         idProductoCE = producto.getIdProducto();
-        limpiarError();
+        //limpiarError();
     }
-
 
     private void mostrarErroresValidacion(List<ConstraintViolation<Producto>> violaciones) {
         limpiarError();
