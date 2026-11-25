@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.shape.SVGPath?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Izquierda: el documento que se está armando (cabecera + líneas). Derecha: el historial -->
+<BorderPane styleClass="pantalla" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.padronmascota.padronmascota.controlador.CompraController">
+
+   <top>
+      <!-- Encabezado: igual en todas las pantallas -->
+      <HBox styleClass="encabezado">
+         <BorderPane.margin><Insets bottom="14.0" /></BorderPane.margin>
+         <StackPane styleClass="encabezado-icono">
+            <SVGPath content="M1 5 h13 v10 H1 z M15 8 h4 l3 3.5 V15 h-7 z M5.5 15.5 a2.2 2.2 0 1 0 0 4.4 a2.2 2.2 0 0 0 0 -4.4 z M17.5 15.5 a2.2 2.2 0 1 0 0 4.4 a2.2 2.2 0 0 0 0 -4.4 z" fill="WHITE" scaleX="1.05" scaleY="1.05" />
+         </StackPane>
+         <VBox alignment="CENTER_LEFT" spacing="1.0" HBox.hgrow="ALWAYS">
+            <Label styleClass="encabezado-titulo" text="%opcion.compras" />
+            <Label styleClass="encabezado-subtitulo" text="%sub.compras" />
+         </VBox>
+      </HBox>
+   </top>
+
+   <left>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-formulario">
+      <VBox spacing="9.0" prefWidth="470.0" styleClass="panel-formulario">
+         <padding>
+            <Insets bottom="18.0" left="18.0" right="18.0" top="20.0" />
+         </padding>
+         <Label styleClass="titulo" text="%compra.nueva" />
+         <GridPane hgap="8.0" vgap="8.0">
+            <columnConstraints>
+               <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label text="%compra.proveedor" GridPane.rowIndex="0" />
+            <!-- Lista con los proveedores registrados en la pantalla Proveedores -->
+            <ComboBox fx:id="cboProveedor" maxWidth="Infinity" promptText="%compra.proveedorPrompt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="%compra.factura" GridPane.rowIndex="1" />
+            <TextField fx:id="txtFactura" promptText="F001-004512" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </GridPane>
+         <Separator />
+         <GridPane hgap="8.0" vgap="8.0">
+            <columnConstraints>
+               <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label text="%compra.producto" GridPane.rowIndex="0" />
+            <TextField fx:id="txtProducto" maxWidth="Infinity" promptText="%compra.productoPrompt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <!-- Campos que solo aparecen si lo escrito es nuevo (agrupados para que no dejen huecos) -->
+            <GridPane hgap="8.0" vgap="8.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+               <Label fx:id="lblCategoriaNueva" text="%producto.categoria" visible="false" managed="false" GridPane.rowIndex="0" />
+               <ComboBox fx:id="cboCategoriaNueva" maxWidth="Infinity" promptText="%comun.elegir" visible="false" managed="false" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+               <Label fx:id="lblPrecioNuevo" text="%compra.precioVenta" visible="false" managed="false" GridPane.rowIndex="1" />
+               <TextField fx:id="txtPrecioNuevo" promptText="%compra.precioVentaPrompt" visible="false" managed="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </GridPane>
+            <Label text="%comun.cantidad" GridPane.rowIndex="2" />
+            <TextField fx:id="txtCantidad" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="%compra.costo" GridPane.rowIndex="3" />
+            <TextField fx:id="txtCosto" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="%compra.lote" GridPane.rowIndex="4" />
+            <TextField fx:id="txtLote" promptText="%compra.opcional" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="%compra.vencimiento" GridPane.rowIndex="5" />
+            <DatePicker fx:id="dtpVencimiento" maxWidth="Infinity" promptText="%compra.opcional" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         </GridPane>
+         <Button onAction="#agregar" styleClass="btn, btn-primario" text="%comun.agregarLinea" minWidth="-Infinity" />
+         <TableView fx:id="tblLineas" prefHeight="170.0" VBox.vgrow="ALWAYS" />
+         <Label fx:id="lblTotalDocumento" styleClass="total-venta" />
+         <HBox spacing="8.0">
+            <Button onAction="#guardar" styleClass="btn, btn-exito" text="%compra.guardar" minWidth="-Infinity" />
+            <Button onAction="#nuevo" styleClass="btn, btn-secundario" text="%comun.limpiar" minWidth="-Infinity" />
+         </HBox>
+      </VBox>
+      </ScrollPane>
+   </left>
+
+   <center>
+      <VBox spacing="10.0" styleClass="panel-tabla">
+         <padding><Insets bottom="12.0" left="14.0" right="14.0" top="14.0" /></padding>
+         <BorderPane.margin>
+            <Insets left="14.0" />
+         </BorderPane.margin>
+         <Label styleClass="titulo" text="%compra.historial" />
+         <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <TextField fx:id="txtBuscar" prefWidth="240.0" promptText="%compra.buscar" />
+         </HBox>
+         <TableView fx:id="tabla" VBox.vgrow="ALWAYS" />
+         <Label fx:id="lblTotal" styleClass="texto-suave" />
+      </VBox>
+   </center>
+</BorderPane>

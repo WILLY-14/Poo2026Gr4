@@ -1,0 +1,738 @@
+/* ==========================================================================
+   PADRÓN MASCOTA · Diseño de la veterinaria
+   --------------------------------------------------------------------------
+   Este archivo define TODO el diseño (tema "Clínica", claro y verde azulado).
+   Los otros temas (tema-*.css) solo cambian los colores de la sección 1.
+
+   1. Paleta (colores con nombre)       6. Tablas
+   2. Fondo con textura de huellitas    7. Menú, pestañas y barra de estado
+   3. Encabezado de cada pantalla       8. Tarjetas del Resumen
+   4. Paneles (tarjetas blancas)        9. Login
+   5. Campos y botones                 10. Avisos y detalles
+   ========================================================================== */
+
+/* ---------- 1. Paleta ---------- */
+.root {
+    -vet-primario: #0e8a83;          /* verde azulado clínico */
+    -vet-primario-oscuro: #0a5e5a;
+    -vet-primario-suave: #d9f2ef;    /* fondos de selección y encabezados de tabla */
+    -vet-acento: #f29d52;            /* naranja cálido: detalles "mascota" */
+    -vet-exito: #2f9e63;
+    -vet-peligro: #d64545;
+    -vet-aviso: #e0a526;
+
+    -vet-fondo: #eef4f3;
+    -vet-superficie: #ffffff;
+    -vet-superficie-2: #f5f9f8;      /* filas alternas, campos de solo lectura */
+    -vet-borde: #dbe5e3;
+    -vet-texto: #1f2d2c;
+    -vet-texto-suave: #61736f;
+    -vet-ayuda: #98a8a5;             /* texto de ayuda (prompt) dentro de los campos */
+    -vet-sombra: rgba(16, 60, 56, 0.10);
+
+    /* Compatibilidad con nombres anteriores */
+    -color-primario: -vet-primario;
+    -color-exito: -vet-exito;
+    -color-peligro: -vet-peligro;
+
+    /* Modena (los controles de JavaFX) toma sus colores de aquí */
+    -fx-base: #e9f1ef;
+    -fx-background: -vet-fondo;
+    -fx-control-inner-background: -vet-superficie;
+    -fx-control-inner-background-alt: -vet-superficie-2;
+    -fx-accent: -vet-primario;
+    -fx-focus-color: -vet-primario;
+    -fx-faint-focus-color: transparent;
+    -fx-selection-bar: -vet-primario-suave;
+    -fx-selection-bar-non-focused: -vet-primario-suave;
+    -fx-selection-bar-text: -vet-texto;
+    -fx-text-base-color: -vet-texto;
+    -fx-text-background-color: -vet-texto;
+    -fx-text-inner-color: -vet-texto;
+    -fx-prompt-text-fill: derive(-vet-texto-suave, 35%);
+
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+}
+
+/* ---------- 2. Fondo con textura de huellitas ---------- */
+.tab-pane > .tab-content-area,
+.pantalla {
+    -fx-background-color: linear-gradient(to bottom, derive(-vet-fondo, 2%), derive(-vet-fondo, -3%));
+    -fx-background-image: url("img/huellas-claro.png");
+    -fx-background-repeat: repeat;
+}
+.pantalla {
+    -fx-padding: 14 16 12 16;
+}
+
+.titulo {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -vet-texto;
+}
+.subtitulo {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -vet-primario-oscuro;
+    -fx-padding: 8 0 2 0;
+}
+.texto-suave {
+    -fx-text-fill: -vet-texto-suave;
+}
+
+/* ---------- 3. Encabezado de cada pantalla ---------- */
+.encabezado {
+    -fx-padding: 14 20 14 16;
+    -fx-spacing: 14;
+    -fx-alignment: center-left;
+    -fx-background-color: linear-gradient(to right, -vet-primario-oscuro 0%, -vet-primario 65%, derive(-vet-primario, 22%) 100%);
+    -fx-background-image: url("img/huellas-banner.png");
+    -fx-background-repeat: repeat;
+    -fx-background-radius: 14;
+    -fx-effect: dropshadow(gaussian, -vet-sombra, 14, 0, 0, 4);
+}
+.encabezado-icono {
+    -fx-min-width: 46; -fx-min-height: 46;
+    -fx-max-width: 46; -fx-max-height: 46;
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+    -fx-background-radius: 23;
+    -fx-border-color: rgba(255, 255, 255, 0.45);
+    -fx-border-radius: 23;
+    -fx-border-width: 1.5;
+}
+.encabezado-icono > SVGPath {
+    -fx-fill: white;
+}
+.encabezado-titulo {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.encabezado-subtitulo {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: rgba(255, 255, 255, 0.85);
+}
+/* Botón dentro del encabezado (ej.: "Actualizar" del Resumen) */
+.encabezado .btn-primario {
+    -fx-background-color: rgba(255, 255, 255, 0.92);
+    -fx-text-fill: -vet-primario-oscuro;
+}
+
+/* ---------- 4. Paneles (tarjetas) ---------- */
+.panel-formulario,
+.panel-tabla {
+    -fx-background-color: -vet-superficie;
+    -fx-background-radius: 14;
+    -fx-border-color: -vet-borde;
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(gaussian, -vet-sombra, 16, 0, 0, 4);
+}
+.panel-formulario {
+    /* Línea de color arriba del formulario: lo identifica como "zona de edición" */
+    -fx-background-color: -vet-primario, -vet-superficie;
+    -fx-background-insets: 0, 4 0 0 0;
+    -fx-background-radius: 14, 12 12 14 14;
+}
+.panel-formulario > .titulo {
+    -fx-text-fill: -vet-primario-oscuro;
+    -fx-font-size: 16px;
+}
+.panel-formulario .label {
+    -fx-text-fill: -vet-texto-suave;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+/* Excepciones: estas etiquetas del formulario mantienen su propio estilo */
+.panel-formulario .label.titulo {
+    -fx-font-size: 17px;
+    -fx-text-fill: -vet-primario-oscuro;
+    -fx-padding: 0 0 4 0;
+}
+.panel-formulario .label.texto-suave {
+    -fx-font-weight: normal;
+    -fx-font-size: 12.5px;
+}
+.panel-formulario .label.total-venta {
+    -fx-font-size: 21px;
+    -fx-text-fill: -vet-primario-oscuro;
+}
+.panel-formulario .button .label,
+.panel-formulario .check-box .label {
+    -fx-font-size: 13px;
+}
+.panel-formulario .separator .line {
+    -fx-border-color: -vet-borde;
+}
+.panel-tabla .titulo {
+    -fx-text-fill: -vet-primario-oscuro;
+}
+
+/* Formularios largos con barra de desplazamiento: transparentes */
+.scroll-formulario,
+.scroll-formulario > .viewport,
+.scroll-transparente,
+.scroll-transparente > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.scroll-formulario {
+    -fx-padding: 0 6 12 0;   /* deja ver la sombra del panel */
+}
+
+/* ---------- 5. Campos y botones ---------- */
+.text-field,
+.password-field,
+.text-area,
+.combo-box,
+.date-picker,
+.spinner {
+    -fx-background-color: -vet-borde, -vet-superficie;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 8, 7;
+    -fx-text-fill: -vet-texto;
+}
+.text-field,
+.password-field {
+    -fx-padding: 7 10 7 10;
+}
+/* Texto y texto de ayuda de TODOS los campos (también el de fecha y combos editables) */
+.text-input,
+.date-picker > .text-field,
+.combo-box .text-field {
+    -fx-text-fill: -vet-texto;
+    -fx-prompt-text-fill: -vet-ayuda;
+    -fx-highlight-fill: -vet-primario;
+    -fx-highlight-text-fill: white;
+}
+.text-area .content {
+    -fx-background-color: -vet-superficie;
+    -fx-background-radius: 7;
+}
+.date-picker > .text-field {
+    -fx-background-color: transparent;
+}
+.combo-box .list-cell {
+    -fx-text-fill: -vet-texto;
+    -fx-padding: 5 8 5 8;
+}
+.text-field:focused,
+.password-field:focused,
+.text-area:focused,
+.combo-box:focused,
+.date-picker:focused {
+    -fx-background-color: -vet-primario, -vet-superficie;
+    -fx-background-insets: 0, 2;
+    -fx-effect: dropshadow(gaussian, derive(-vet-primario, 55%), 6, 0.3, 0, 0);
+}
+.combo-box .arrow,
+.date-picker .arrow-button .arrow {
+    -fx-background-color: -vet-primario;
+}
+.combo-box .arrow-button,
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: -vet-borde, -vet-superficie;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 12, 0, 0, 4);
+}
+.combo-box-popup .list-view .list-cell:filled:hover,
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: -vet-primario-suave;
+    -fx-text-fill: -vet-texto;
+}
+.check-box .box {
+    -fx-background-color: -vet-borde, -vet-superficie;
+    -fx-background-radius: 4;
+}
+.check-box:selected .box {
+    -fx-background-color: -vet-primario;
+}
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+/* Botones */
+.btn {
+    -fx-font-weight: bold;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-background-insets: 0;
+}
+.btn-chico {
+    -fx-font-size: 11px;
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 6;
+}
+.btn-primario {
+    -fx-background-color: linear-gradient(to bottom, derive(-vet-primario, 12%), -vet-primario);
+    -fx-text-fill: white;
+}
+.btn-exito {
+    -fx-background-color: linear-gradient(to bottom, derive(-vet-exito, 12%), -vet-exito);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, derive(-vet-exito, 40%), 6, 0, 0, 2);
+}
+.btn-peligro {
+    -fx-background-color: linear-gradient(to bottom, derive(-vet-peligro, 12%), -vet-peligro);
+    -fx-text-fill: white;
+}
+.btn-secundario {
+    -fx-background-color: -vet-superficie-2;
+    -fx-border-color: -vet-borde;
+    -fx-text-fill: -vet-texto;
+}
+/* Botones chicos de las tablas: estilo "suave" (fondo tenue, texto de color) */
+.btn-chico.btn-primario {
+    -fx-background-color: derive(-vet-primario, 82%);
+    -fx-text-fill: -vet-primario-oscuro;
+}
+.btn-chico.btn-peligro {
+    -fx-background-color: derive(-vet-peligro, 82%);
+    -fx-text-fill: derive(-vet-peligro, -25%);
+}
+.btn-chico.btn-secundario {
+    -fx-background-color: derive(-vet-aviso, 75%);
+    -fx-border-color: transparent;
+    -fx-text-fill: derive(-vet-aviso, -45%);
+}
+.btn:hover {
+    -fx-opacity: 0.88;
+}
+.btn:pressed {
+    -fx-translate-y: 1;
+}
+.btn-chico.btn-primario:hover { -fx-background-color: -vet-primario; -fx-text-fill: white; -fx-opacity: 1; }
+.btn-chico.btn-peligro:hover { -fx-background-color: -vet-peligro; -fx-text-fill: white; -fx-opacity: 1; }
+.btn-chico.btn-secundario:hover { -fx-background-color: -vet-aviso; -fx-text-fill: white; -fx-opacity: 1; }
+
+/* Botones con ícono de las tablas (Editar, Eliminar, Ver...) */
+.btn-icono {
+    -fx-padding: 5 7 5 7;
+    -fx-min-width: 30;
+    -fx-min-height: 26;
+}
+.btn-icono.btn-primario SVGPath { -fx-fill: -vet-primario-oscuro; }
+.btn-icono.btn-peligro SVGPath { -fx-fill: derive(-vet-peligro, -25%); }
+.btn-icono.btn-secundario SVGPath { -fx-fill: derive(-vet-aviso, -45%); }
+.btn-icono:hover SVGPath { -fx-fill: white; }
+
+/* ---------- 6. Tablas ---------- */
+.table-view {
+    -fx-background-color: -vet-borde, -vet-superficie;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 10;
+    -fx-padding: 1;
+    -fx-table-cell-border-color: transparent;
+}
+.table-view .column-header-background {
+    -fx-background-color: -vet-primario-suave;
+    -fx-background-radius: 9 9 0 0;
+}
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent derive(-vet-primario-suave, -6%) transparent transparent;
+    -fx-size: 36;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -vet-primario-oscuro;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 8 0 8;
+}
+.table-view .column-header .arrow {
+    -fx-background-color: -vet-primario;
+}
+.table-row-cell {
+    -fx-background-color: -vet-superficie;
+    -fx-cell-size: 36;
+    -fx-border-color: transparent transparent -vet-borde transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.table-row-cell:odd {
+    -fx-background-color: -vet-superficie-2;
+}
+.table-row-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.table-row-cell:filled:hover {
+    -fx-background-color: derive(-vet-primario-suave, 40%);
+}
+.table-row-cell:filled:selected {
+    -fx-background-color: -vet-primario-suave;
+    -fx-border-color: transparent transparent -vet-primario transparent;
+}
+.table-cell {
+    -fx-padding: 0 8 0 8;
+    -fx-alignment: center-left;
+    -fx-text-fill: -vet-texto;
+}
+.table-row-cell:filled:selected .table-cell {
+    -fx-text-fill: -vet-texto;
+}
+.table-view .placeholder .label {
+    -fx-text-fill: -vet-texto-suave;
+    -fx-font-size: 14px;
+}
+
+/* Barras de desplazamiento finas */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+.scroll-bar .thumb {
+    -fx-background-color: derive(-vet-borde, -15%);
+    -fx-background-radius: 6;
+    -fx-background-insets: 2;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: -vet-primario;
+}
+/* Los botones de flecha se ocultan, pero dan el grosor (10 px) a la barra */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: "M0 0 h1 v1 h-1 z";
+    -fx-background-color: transparent;
+    -fx-padding: 0 5 0 5;
+}
+.scroll-bar:horizontal .increment-arrow,
+.scroll-bar:horizontal .decrement-arrow {
+    -fx-shape: "M0 0 h1 v1 h-1 z";
+    -fx-background-color: transparent;
+    -fx-padding: 5 0 5 0;
+}
+
+/* ---------- 7. Menú, pestañas y barra de estado ---------- */
+.menu-bar {
+    -fx-background-color: linear-gradient(to right, -vet-primario-oscuro, -vet-primario);
+    -fx-padding: 2 8 2 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.20), 6, 0, 0, 2);
+}
+.menu-bar > .container > .menu-button {
+    -fx-background-radius: 6;
+    -fx-padding: 6 12 6 12;
+}
+.menu-bar > .container > .menu-button > .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+}
+.context-menu {
+    -fx-background-color: -vet-borde, -vet-superficie;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 8;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 14, 0, 0, 4);
+}
+.menu-item {
+    -fx-background-radius: 6;
+    -fx-padding: 7 14 7 10;
+}
+.menu-item .label {
+    -fx-text-fill: -vet-texto;
+}
+.menu-item:focused {
+    -fx-background-color: -vet-primario-suave;
+}
+.menu-item:focused .label {
+    -fx-text-fill: -vet-primario-oscuro;
+}
+
+.tab-pane > .tab-header-area {
+    -fx-padding: 8 10 0 10;
+}
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: -vet-superficie;
+    -fx-effect: dropshadow(gaussian, -vet-sombra, 6, 0, 0, 1);
+}
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 6 12 6 12;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 3 0;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:hover {
+    -fx-background-color: -vet-superficie-2;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: -vet-primario-suave;
+    -fx-border-color: -vet-primario;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab .tab-label {
+    -fx-text-fill: -vet-texto-suave;
+    -fx-font-weight: bold;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:selected .tab-label {
+    -fx-text-fill: -vet-primario-oscuro;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+.tab .tab-close-button {
+    -fx-background-color: -vet-texto-suave;
+}
+.tab .tab-close-button:hover {
+    -fx-background-color: -vet-peligro;
+}
+/* Pestañas internas (Reporte de ventas): sin textura extra */
+.pantalla .tab-pane > .tab-content-area {
+    -fx-background-color: transparent;
+    -fx-background-image: null;
+    -fx-padding: 12 0 0 0;
+}
+.pantalla .tab-pane > .tab-header-area {
+    -fx-padding: 0;
+}
+.pantalla .tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: transparent;
+    -fx-effect: null;
+    -fx-border-color: transparent transparent -vet-borde transparent;
+}
+
+.barra-estado {
+    -fx-background-color: -vet-superficie;
+    -fx-border-color: -vet-borde transparent transparent transparent;
+    -fx-alignment: center-left;
+}
+.barra-estado .label {
+    -fx-text-fill: -vet-texto-suave;
+    -fx-font-size: 12px;
+}
+
+/* ---------- 8. Tarjetas del Resumen ---------- */
+.tarjeta {
+    -fx-padding: 14 18 14 18;
+    -fx-min-width: 165;
+    -fx-spacing: 2;
+    -fx-background-color: -vet-primario, -vet-superficie;
+    -fx-background-insets: 0, 0 0 0 5;   /* franja de color a la izquierda */
+    -fx-background-radius: 12, 0 12 12 0;
+    -fx-effect: dropshadow(gaussian, -vet-sombra, 12, 0, 0, 3);
+}
+.tarjeta:hover {
+    -fx-effect: dropshadow(gaussian, derive(-vet-primario, 30%), 14, 0, 0, 4);
+    -fx-translate-y: -1;
+}
+.tarjeta-titulo {
+    -fx-font-size: 12px;
+    -fx-text-fill: -vet-texto-suave;
+    -fx-font-weight: bold;
+}
+.tarjeta-valor {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -vet-primario-oscuro;
+}
+/* Gráficos del Resumen dentro de un panel */
+.chart {
+    -fx-background-color: -vet-superficie;
+    -fx-background-radius: 14;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, -vet-sombra, 12, 0, 0, 3);
+}
+.chart-title {
+    -fx-text-fill: -vet-primario-oscuro;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+.chart-legend {
+    -fx-background-color: transparent;
+}
+.chart-legend-item, .chart-pie-label {
+    -fx-text-fill: -vet-texto;
+}
+.default-color0.chart-pie { -fx-pie-color: -vet-primario; }
+.default-color1.chart-pie { -fx-pie-color: -vet-acento; }
+.default-color2.chart-pie { -fx-pie-color: #6c8ae4; }
+.default-color3.chart-pie { -fx-pie-color: #c76bb5; }
+.default-color4.chart-pie { -fx-pie-color: -vet-aviso; }
+.default-color5.chart-pie { -fx-pie-color: #8aa29e; }
+
+/* ---------- 9. Login ---------- */
+.login {
+    -fx-background-color: linear-gradient(to bottom right,
+            derive(-vet-primario, 20%) 0%,
+            -vet-primario 45%,
+            derive(-vet-primario-oscuro, -45%) 100%);
+}
+.huella-fondo {
+    -fx-fill: rgba(255, 255, 255, 0.10);
+}
+.login-claro {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.login-pie {
+    -fx-text-fill: rgba(255, 255, 255, 0.75);
+    -fx-font-size: 11px;
+}
+.login-tarjeta {
+    -fx-background-color: -vet-superficie;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 30, 0.12, 0, 10);
+}
+.login-logo {
+    -fx-min-width: 86; -fx-min-height: 86;
+    -fx-pref-width: 86; -fx-pref-height: 86;
+    -fx-background-color: linear-gradient(to bottom, derive(-vet-primario, 18%), -vet-primario-oscuro);
+    -fx-background-radius: 43;
+    -fx-border-color: -vet-superficie;
+    -fx-border-width: 4;
+    -fx-border-radius: 43;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.30), 12, 0, 0, 4);
+}
+.login-logo-huella {
+    -fx-fill: white;
+}
+.login-titulo {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -vet-primario-oscuro;
+}
+.login-error {
+    -fx-text-fill: -vet-peligro;
+    -fx-font-weight: bold;
+}
+.campo-login {
+    -fx-padding: 3 14 3 14;
+    -fx-background-color: -vet-superficie-2;
+    -fx-background-radius: 24;
+    -fx-border-color: -vet-borde;
+    -fx-border-radius: 24;
+    -fx-border-width: 1.5;
+}
+.campo-login:focus-within {
+    -fx-border-color: -vet-primario;
+    -fx-effect: dropshadow(gaussian, derive(-vet-primario, 50%), 8, 0.2, 0, 0);
+}
+.campo-login .text-field,
+.campo-login .password-field,
+.campo-login .text-field:focused,
+.campo-login .password-field:focused {
+    -fx-background-color: transparent;
+    -fx-effect: null;
+    -fx-padding: 7 0 7 0;
+    -fx-font-size: 14px;
+}
+.campo-icono {
+    -fx-fill: -vet-primario;
+}
+.btn-login {
+    -fx-background-color: linear-gradient(to right, -vet-primario, -vet-primario-oscuro);
+    -fx-background-radius: 24;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 11 0 11 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, derive(-vet-primario, 20%), 10, 0, 0, 3);
+}
+.btn-login:hover {
+    -fx-background-color: linear-gradient(to right, derive(-vet-primario, 12%), -vet-primario);
+}
+.btn-login:pressed {
+    -fx-translate-y: 1;
+    -fx-effect: null;
+}
+.btn-login-secundario {
+    -fx-background-color: transparent;
+    -fx-background-radius: 24;
+    -fx-border-color: -vet-borde;
+    -fx-border-radius: 24;
+    -fx-border-width: 1.5;
+    -fx-text-fill: -vet-texto-suave;
+    -fx-font-weight: bold;
+    -fx-padding: 9 0 9 0;
+    -fx-cursor: hand;
+}
+.btn-login-secundario:hover {
+    -fx-background-color: -vet-superficie-2;
+    -fx-border-color: -vet-peligro;
+    -fx-text-fill: -vet-peligro;
+}
+.circulo-tema {
+    -fx-stroke: white;
+    -fx-stroke-width: 2;
+    -fx-cursor: hand;
+}
+.circulo-tema:hover {
+    -fx-stroke-width: 3.5;
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
+}
+
+/* ---------- 10. Avisos y detalles ---------- */
+.total-venta {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -vet-primario-oscuro;
+    -fx-background-color: -vet-primario-suave;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14 8 14;
+    -fx-max-width: infinity;
+}
+.campo-error,
+.campo-error:focused {
+    -fx-background-color: -vet-peligro, -vet-superficie;
+    -fx-background-insets: 0, 2;
+}
+.tooltip-error {
+    -fx-background-color: -vet-peligro;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+.tooltip {
+    -fx-background-color: -vet-primario-oscuro;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-font-size: 12px;
+}
+.notificacion {
+    -fx-padding: 12 20 12 20;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.30), 12, 0, 0, 3);
+}
+.notificacion-exito { -fx-background-color: #2f9e63; }
+.notificacion-error { -fx-background-color: #d64545; }
+.notificacion-info  { -fx-background-color: #0e8a83; }
+
+/* Diálogos (Alert) */
+.dialog-pane {
+    -fx-background-color: -vet-superficie;
+}
+.dialog-pane > .header-panel {
+    -fx-background-color: -vet-primario-suave;
+}
+.dialog-pane > .header-panel .label {
+    -fx-text-fill: -vet-primario-oscuro;
+    -fx-font-weight: bold;
+}
+.dialog-pane > .button-bar .button {
+    -fx-background-radius: 8;
+    -fx-padding: 7 16 7 16;
+}
+.dialog-pane > .button-bar .button:default {
+    -fx-background-color: -vet-primario;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}

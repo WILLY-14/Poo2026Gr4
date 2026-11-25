@@ -66,7 +66,7 @@ public class VentaController {
     ConsultaDNI cDni;
     TipoProducto tipoProducto;
 
-    
+
     public VentaController(IProductoService ps, IClienteService cs, IVentaCarritoService daoC, IUsuarioService daoU, IVentaService daoV, IVentaDetalleService daoVD, ConsultaDNI cDni) {
         this.ps = ps;
         this.cs = cs;
@@ -191,6 +191,7 @@ public class VentaController {
                     .nombres(razonSocial.getText())
                     .repLegal(razonSocial.getText())
                     .tipoDocumento(TipoDocumento.DNI)
+                    .direccion(txtDireccion.getText())
                     .build();
             cs.save(c);
             btnRegCliente.setDisable(true);
@@ -301,37 +302,37 @@ public class VentaController {
         String fechaFormateada = localDate.format(formatter);
         List<VentCarrito> dd = daoC.listaCarritoCliente(dniRuc.getText());
         if(dd.size()>0){
-        Venta to=Venta.builder()
-                .dniruc(cs.findById(dniRuc.getText()))
-                .precioBase(Double.parseDouble(txtBaseImp.getText()))
-                .igv(Double.parseDouble(txtIgv.getText()))
-                .precioTotal(Double.parseDouble(txtImporteT.getText()))
-                .idUsuario(daoU.findById(SessionManager.getInstance().getUserId()))
-                .serie("V")
-                .tipoDoc("Factura")
-                .fechaGener(LocalDate.parse(fechaFormateada, formatter))
-                .numDoc("00" )
-                .build();
-        Venta idX = daoV.save(to);
+            Venta to=Venta.builder()
+                    .dniruc(cs.findById(dniRuc.getText()))
+                    .precioBase(Double.parseDouble(txtBaseImp.getText()))
+                    .igv(Double.parseDouble(txtIgv.getText()))
+                    .precioTotal(Double.parseDouble(txtImporteT.getText()))
+                    .idUsuario(daoU.findById(SessionManager.getInstance().getUserId()))
+                    .serie("V")
+                    .tipoDoc("Factura")
+                    .fechaGener(LocalDate.parse(fechaFormateada, formatter))
+                    .numDoc("00" )
+                    .build();
+            Venta idX = daoV.save(to);
 
-        List<VentaDetalle> vdList = new ArrayList<>();
-        if (idX.getId() != 0) {
-            for (VentCarrito car : dd) {
-                VentaDetalle vd = VentaDetalle.builder()
-                        .idVenta(idX)
-                        .idProducto(ps.findById(car.getIdProducto().getIdProducto()))
-                        .cantidad(car.getCantidad())
-                        .descuento(0.0)
-                        .pu(car.getPunitario())
-                        .subtotal(car.getPtotal())
-                        .build();
-              VentaDetalle vdTemp=daoVD.save(vd);
-                vdList.add(vdTemp);
+            List<VentaDetalle> vdList = new ArrayList<>();
+            if (idX.getId() != 0) {
+                for (VentCarrito car : dd) {
+                    VentaDetalle vd = VentaDetalle.builder()
+                            .idVenta(idX)
+                            .idProducto(ps.findById(car.getIdProducto().getIdProducto()))
+                            .cantidad(car.getCantidad())
+                            .descuento(0.0)
+                            .pu(car.getPunitario())
+                            .subtotal(car.getPtotal())
+                            .build();
+                    VentaDetalle vdTemp=daoVD.save(vd);
+                    vdList.add(vdTemp);
+                }
             }
-        }
-        daoC.deleteCarAll(dniRuc.getText());
-        listar();
-        idX.setDetalleVenta(vdList);
+            daoC.deleteCarAll(dniRuc.getText());
+            listar();
+            idX.setDetalleVenta(vdList);
 
         }else{
             Stage stage = StageManager.getPrimaryStage();

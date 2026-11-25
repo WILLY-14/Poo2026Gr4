@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="pe.edu.upeu.sysventas.controller.CatalogoController" spacing="14" prefWidth="950" style="-fx-padding:24;">
+ <Label text="CATÁLOGO DE PRODUCTOS ELECTRÓNICOS" styleClass="page-title"/>
+ <Label text="Administre marcas y categorías. Seleccione una fila para editarla."/>
+ <HBox spacing="20" VBox.vgrow="ALWAYS">
+ <VBox spacing="10" HBox.hgrow="ALWAYS"><Label text="Marcas" style="-fx-font-size:18;-fx-font-weight:bold;"/><TextField fx:id="txtMarca" promptText="Ej.: Samsung"/><HBox spacing="7"><Button styleClass="btn btn-success" text="Guardar" onAction="#guardarMarca"/><Button styleClass="btn btn-secondary" text="Nuevo" onAction="#nuevaMarca"/><Button styleClass="btn btn-danger" text="Eliminar" onAction="#eliminarMarca"/></HBox><TableView fx:id="tablaMarcas" VBox.vgrow="ALWAYS"><columns><TableColumn fx:id="colMarca" text="Nombre de la marca" prefWidth="390"/></columns></TableView></VBox>
+ <VBox spacing="10" HBox.hgrow="ALWAYS"><Label text="Categorías" style="-fx-font-size:18;-fx-font-weight:bold;"/><TextField fx:id="txtCategoria" promptText="Ej.: Laptops"/><HBox spacing="7"><Button styleClass="btn btn-success" text="Guardar" onAction="#guardarCategoria"/><Button styleClass="btn btn-secondary" text="Nuevo" onAction="#nuevaCategoria"/><Button styleClass="btn btn-danger" text="Eliminar" onAction="#eliminarCategoria"/></HBox><TableView fx:id="tablaCategorias" VBox.vgrow="ALWAYS"><columns><TableColumn fx:id="colCategoria" text="Nombre de categoría" prefWidth="390"/></columns></TableView></VBox>
+ </HBox><Label fx:id="estado" text="Listo para administrar el catálogo"/>
+</VBox>

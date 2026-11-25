@@ -1,0 +1,56 @@
+/* Tema Oscuro: superficies oscuras, mismo verde azulado más brillante */
+.root {
+    -vet-primario: #2bb3a8;
+    -vet-primario-oscuro: #6fd8cf;      /* en oscuro se usa para textos destacados: va más claro */
+    -vet-primario-suave: #17403d;
+    -vet-acento: #f2a65e;
+    -vet-exito: #36b073;
+    -vet-peligro: #e05b5b;
+    -vet-fondo: #141b1b;
+    -vet-superficie: #1d2626;
+    -vet-superficie-2: #222d2d;
+    -vet-borde: #2f3d3c;
+    -vet-texto: #e3ecea;
+    -vet-texto-suave: #9cb0ad;
+    -vet-sombra: rgba(0, 0, 0, 0.45);
+
+    -fx-base: #263131;
+    -fx-control-inner-background: -vet-superficie;
+    -vet-ayuda: #7f9592;                /* texto de ayuda legible sobre fondo oscuro */
+}
+.tab-pane > .tab-content-area,
+.pantalla {
+    -fx-background-image: url("img/huellas-oscuro.png");
+}
+.encabezado {
+    -fx-background-color: linear-gradient(to right, #0b4d49 0%, #11786f 65%, #1a958a 100%);
+}
+.menu-bar {
+    -fx-background-color: linear-gradient(to right, #0d2524, #13403c);
+}
+.btn-primario, .btn-login {
+    -fx-text-fill: #08201e;
+}
+.encabezado .btn-primario {
+    -fx-text-fill: #0b4d49;
+}
+.btn-chico.btn-primario { -fx-background-color: #1c4a46; -fx-text-fill: #8ee6dd; }
+.btn-chico.btn-peligro { -fx-background-color: #4a2424; -fx-text-fill: #ff9d9d; }
+.btn-chico.btn-secundario { -fx-background-color: #4a3d1c; -fx-text-fill: #f3cf7a; }
+.login {
+    -fx-background-color: linear-gradient(to bottom right, #1a5a55 0%, #103b38 45%, #070f0f 100%);
+}
+.login-logo {
+    -fx-background-color: linear-gradient(to bottom, #2bb3a8, #11786f);
+}
+.campo-login .text-field,
+.campo-login .password-field {
+    -fx-prompt-text-fill: #7f9592;
+}
+.chart-pie-label-line {
+    -fx-stroke: #9cb0ad;
+}
+.btn-icono.btn-primario SVGPath { -fx-fill: #8ee6dd; }
+.btn-icono.btn-peligro SVGPath { -fx-fill: #ff9d9d; }
+.btn-icono.btn-secundario SVGPath { -fx-fill: #f3cf7a; }
+.btn-icono:hover SVGPath { -fx-fill: white; }

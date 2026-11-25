@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="pantalla" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.padronmascota.padronmascota.controlador.VentaController">
+
+   <!-- Izquierda: la venta que se está armando -->
+   <top>
+      <!-- Encabezado: igual en todas las pantallas -->
+      <HBox styleClass="encabezado">
+         <BorderPane.margin><Insets bottom="14.0" /></BorderPane.margin>
+         <StackPane styleClass="encabezado-icono">
+            <SVGPath content="M2 3 h3 l2.6 11 h10.6 l2.3 -8 H7.2 l-0.5 -2 H2 z M9 17 a2 2 0 1 0 0 4 a2 2 0 0 0 0 -4 z M17 17 a2 2 0 1 0 0 4 a2 2 0 0 0 0 -4 z" fill="WHITE" scaleX="1.05" scaleY="1.05" />
+         </StackPane>
+         <VBox alignment="CENTER_LEFT" spacing="1.0" HBox.hgrow="ALWAYS">
+            <Label styleClass="encabezado-titulo" text="%opcion.nuevaVenta" />
+            <Label styleClass="encabezado-subtitulo" text="%sub.ventas" />
+         </VBox>
+      </HBox>
+   </top>
+
+   <left>
+      <VBox spacing="10.0" prefWidth="460.0" styleClass="panel-formulario">
+         <padding>
+            <Insets bottom="18.0" left="18.0" right="18.0" top="20.0" />
+         </padding>
+         <Label styleClass="titulo" text="%venta.nueva" />
+         <GridPane hgap="8.0" vgap="9.0">
+            <columnConstraints>
+               <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label text="%venta.cliente" GridPane.rowIndex="0" />
+            <TextField fx:id="txtCliente" maxWidth="Infinity" promptText="%mascota.propietarioPrompt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <!-- Solo aparecen si el cliente escrito es nuevo -->
+            <GridPane hgap="8.0" vgap="9.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+               <Label fx:id="lblDniCliente" text="%propietario.dni" visible="false" managed="false" GridPane.rowIndex="0" />
+               <TextField fx:id="txtDniCliente" promptText="%propietario.dniPrompt" visible="false" managed="false" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+               <Label fx:id="lblTelCliente" text="%propietario.telefono" visible="false" managed="false" GridPane.rowIndex="1" />
+               <TextField fx:id="txtTelCliente" promptText="%propietario.telefonoPrompt" visible="false" managed="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </GridPane>
+            <Label text="%venta.comprobante" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cboComprobante" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="%venta.metodoPago" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cboMetodoPago" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="lblRuc" text="%venta.ruc" visible="false" managed="false" GridPane.rowIndex="4" />
+            <TextField fx:id="txtRuc" promptText="%venta.rucPrompt" visible="false" managed="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </GridPane>
+         <Label fx:id="lblPendientes" styleClass="texto-suave" wrapText="true" minHeight="-Infinity" />
+         <Separator />
+         <Label text="%venta.extraAyuda" styleClass="texto-suave" wrapText="true" minHeight="-Infinity" />
+         <TextField fx:id="txtItem" maxWidth="Infinity" prefWidth="200.0" promptText="%venta.itemPrompt" />
+         <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <Label text="%venta.cantidadLarga" />
+            <TextField fx:id="txtCantidad" prefWidth="50.0" />
+            <Label text="%venta.precioSoles" />
+            <TextField fx:id="txtPrecio" prefWidth="75.0" promptText="0.00" />
+            <Button onAction="#agregar" styleClass="btn, btn-primario" text="%venta.agregar" />
+         </HBox>
+         <TableView fx:id="tblDetalle" prefHeight="230.0" VBox.vgrow="ALWAYS" />
+         <Label fx:id="lblTotalVenta" styleClass="total-venta" />
+         <HBox spacing="8.0">
+            <Button onAction="#cobrar" styleClass="btn, btn-exito" text="%venta.cobrar" />
+            <Button onAction="#nuevaVenta" styleClass="btn, btn-secundario" text="%comun.limpiar" />
+         </HBox>
+      </VBox>
+   </left>
+
+   <!-- Centro: historial de ventas -->
+   <center>
+      <VBox spacing="10.0" styleClass="panel-tabla">
+         <padding><Insets bottom="12.0" left="14.0" right="14.0" top="14.0" /></padding>
+         <BorderPane.margin>
+            <Insets left="14.0" />
+         </BorderPane.margin>
+         <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <Label styleClass="titulo" text="%venta.historial" />
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <TextField fx:id="txtBuscar" prefWidth="220.0" promptText="%venta.buscar" />
+            <Label text="%venta.estado" />
+            <ComboBox fx:id="cboFiltroEstado" onAction="#buscar" prefWidth="110.0" />
+            <Button onAction="#limpiarFiltros" styleClass="btn, btn-secundario" text="%comun.limpiar" />
+         </HBox>
+         <TableView fx:id="tblVentas" VBox.vgrow="ALWAYS" />
+         <Label fx:id="lblTotal" styleClass="texto-suave" />
+      </VBox>
+   </center>
+</BorderPane>

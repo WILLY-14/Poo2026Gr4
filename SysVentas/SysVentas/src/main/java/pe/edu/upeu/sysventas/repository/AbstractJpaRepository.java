@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractJpaRepository<T,ID> extends SqlHelper<T> implements ICrudGenericoRepository<T,ID> {
+public abstract class AbstractJpaRepository<T,ID>  extends SqlHelper<T>
+        implements ICrudGenericoRepository<T,ID>{
+
     protected abstract String getTableName();
     protected abstract String getPkColumn();
     protected abstract T insert(Connection connection, T entity) throws SQLException;
     protected abstract T updateRow(Connection connection, T entity) throws SQLException;
+
     @Override
     public T save(T entity) {
         try(Connection conn = openConnection()) {
@@ -66,6 +69,7 @@ public abstract class AbstractJpaRepository<T,ID> extends SqlHelper<T> implement
         String sql = "SELECT 1 FROM " + getTableName() + " WHERE " + getPkColumn() + " = ?";
         return executeExists(sql, id);
     }
+
 
 
 

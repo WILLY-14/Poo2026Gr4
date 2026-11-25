@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+<!--
+  Login con fondo degradado + huellitas y una tarjeta al centro.
+  Los colores salen del tema (-color-primario), así cambia con los circulitos.
+  Los fx:id son los mismos de antes: el LoginController no cambia.
+-->
+<StackPane styleClass="login" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="pe.edu.upeu.padronmascota.padronmascota.controlador.LoginController">
+
+   <!-- Capa 1: huellitas de adorno (no reciben clics) -->
+   <Pane mouseTransparent="true">
+      <SVGPath content="M12 12.5 c-3 0 -6.5 3.2 -6.5 6 c0 1.8 1.4 2.8 3.2 2.8 c1.3 0 2.2 -0.7 3.3 -0.7 c1.1 0 2 0.7 3.3 0.7 c1.8 0 3.2 -1 3.2 -2.8 c0 -2.8 -3.5 -6 -6.5 -6 z M2.5 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z M6.6 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M12.8 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M17.1 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z" styleClass="huella-fondo" layoutX="30" layoutY="90" rotate="-20" scaleX="2.2" scaleY="2.2" />
+      <SVGPath content="M12 12.5 c-3 0 -6.5 3.2 -6.5 6 c0 1.8 1.4 2.8 3.2 2.8 c1.3 0 2.2 -0.7 3.3 -0.7 c1.1 0 2 0.7 3.3 0.7 c1.8 0 3.2 -1 3.2 -2.8 c0 -2.8 -3.5 -6 -6.5 -6 z M2.5 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z M6.6 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M12.8 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M17.1 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z" styleClass="huella-fondo" layoutX="400" layoutY="70" rotate="25" scaleX="1.6" scaleY="1.6" />
+      <SVGPath content="M12 12.5 c-3 0 -6.5 3.2 -6.5 6 c0 1.8 1.4 2.8 3.2 2.8 c1.3 0 2.2 -0.7 3.3 -0.7 c1.1 0 2 0.7 3.3 0.7 c1.8 0 3.2 -1 3.2 -2.8 c0 -2.8 -3.5 -6 -6.5 -6 z M2.5 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z M6.6 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M12.8 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M17.1 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z" styleClass="huella-fondo" layoutX="60" layoutY="470" rotate="15" scaleX="1.4" scaleY="1.4" />
+      <SVGPath content="M12 12.5 c-3 0 -6.5 3.2 -6.5 6 c0 1.8 1.4 2.8 3.2 2.8 c1.3 0 2.2 -0.7 3.3 -0.7 c1.1 0 2 0.7 3.3 0.7 c1.8 0 3.2 -1 3.2 -2.8 c0 -2.8 -3.5 -6 -6.5 -6 z M2.5 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z M6.6 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M12.8 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M17.1 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z" styleClass="huella-fondo" layoutX="410" layoutY="430" rotate="-30" scaleX="2.6" scaleY="2.6" />
+      <SVGPath content="M12 12.5 c-3 0 -6.5 3.2 -6.5 6 c0 1.8 1.4 2.8 3.2 2.8 c1.3 0 2.2 -0.7 3.3 -0.7 c1.1 0 2 0.7 3.3 0.7 c1.8 0 3.2 -1 3.2 -2.8 c0 -2.8 -3.5 -6 -6.5 -6 z M2.5 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z M6.6 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M12.8 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M17.1 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z" styleClass="huella-fondo" layoutX="360" layoutY="260" rotate="40" scaleX="1.2" scaleY="1.2" />
+      <SVGPath content="M12 12.5 c-3 0 -6.5 3.2 -6.5 6 c0 1.8 1.4 2.8 3.2 2.8 c1.3 0 2.2 -0.7 3.3 -0.7 c1.1 0 2 0.7 3.3 0.7 c1.8 0 3.2 -1 3.2 -2.8 c0 -2.8 -3.5 -6 -6.5 -6 z M2.5 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z M6.6 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M12.8 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M17.1 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z" styleClass="huella-fondo" layoutX="20" layoutY="290" rotate="-45" scaleX="1.0" scaleY="1.0" />
+      <SVGPath content="M12 12.5 c-3 0 -6.5 3.2 -6.5 6 c0 1.8 1.4 2.8 3.2 2.8 c1.3 0 2.2 -0.7 3.3 -0.7 c1.1 0 2 0.7 3.3 0.7 c1.8 0 3.2 -1 3.2 -2.8 c0 -2.8 -3.5 -6 -6.5 -6 z M2.5 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z M6.6 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M12.8 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M17.1 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z" styleClass="huella-fondo" layoutX="200" layoutY="560" rotate="10" scaleX="1.8" scaleY="1.8" />
+   </Pane>
+
+   <!-- Capa 2: contenido -->
+   <VBox alignment="TOP_CENTER" spacing="18.0">
+      <padding>
+         <Insets bottom="24.0" left="34.0" right="34.0" top="16.0" />
+      </padding>
+
+      <!-- Arriba: circulitos de tema (se dibujan desde el controlador) e idioma -->
+      <HBox alignment="CENTER_LEFT" spacing="8.0">
+         <Label text="%login.tema" minWidth="-Infinity" styleClass="login-claro" />
+         <HBox fx:id="cajaTemas" alignment="CENTER_LEFT" spacing="8.0" />
+         <Region HBox.hgrow="ALWAYS" />
+         <Label text="%login.idioma" minWidth="-Infinity" styleClass="login-claro" />
+         <ComboBox fx:id="cboIdioma" minWidth="-Infinity" prefWidth="115.0" />
+      </HBox>
+
+      <!-- Tarjeta -->
+      <VBox alignment="TOP_CENTER" spacing="14.0" styleClass="login-tarjeta" VBox.vgrow="NEVER">
+         <VBox.margin>
+            <Insets top="34.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="26.0" left="28.0" right="28.0" top="0.0" />
+         </padding>
+
+         <!-- Logo: círculo con una huella (sale un poco por encima de la tarjeta) -->
+         <StackPane styleClass="login-logo" maxWidth="-Infinity" maxHeight="-Infinity">
+            <VBox.margin>
+               <Insets top="-42.0" />
+            </VBox.margin>
+            <SVGPath content="M12 12.5 c-3 0 -6.5 3.2 -6.5 6 c0 1.8 1.4 2.8 3.2 2.8 c1.3 0 2.2 -0.7 3.3 -0.7 c1.1 0 2 0.7 3.3 0.7 c1.8 0 3.2 -1 3.2 -2.8 c0 -2.8 -3.5 -6 -6.5 -6 z M2.5 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z M6.6 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M12.8 5.5 a2.3 2.9 0 1 0 4.6 0 a2.3 2.9 0 1 0 -4.6 0 z M17.1 10.5 a2.2 2.7 0 1 0 4.4 0 a2.2 2.7 0 1 0 -4.4 0 z" styleClass="login-logo-huella" scaleX="2.3" scaleY="2.3" />
+         </StackPane>
+
+         <VBox alignment="CENTER" spacing="2.0">
+            <Label text="%app.titulo" styleClass="login-titulo" />
+            <Label text="%login.titulo" styleClass="texto-suave" />
+         </VBox>
+
+         <VBox spacing="12.0">
+            <VBox.margin>
+               <Insets top="6.0" />
+            </VBox.margin>
+            <!-- Campo usuario con icono -->
+            <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="campo-login">
+               <SVGPath content="M12 12 a4 4 0 1 0 0 -8 a4 4 0 0 0 0 8 z M4 20 c0 -3.3 3.6 -6 8 -6 s8 2.7 8 6 v1 H4 z" styleClass="campo-icono" />
+               <TextField fx:id="txtUsuario" promptText="%login.usuario" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <!-- Campo clave con icono -->
+            <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="campo-login">
+               <SVGPath fillRule="EVEN_ODD" content="M7 10 V7 a5 5 0 0 1 10 0 v3 h1 a1 1 0 0 1 1 1 v9 a1 1 0 0 1 -1 1 H6 a1 1 0 0 1 -1 -1 v-9 a1 1 0 0 1 1 -1 z M9 10 h6 V7 a3 3 0 0 0 -6 0 z" styleClass="campo-icono" />
+               <PasswordField fx:id="txtClave" promptText="%login.clave" HBox.hgrow="ALWAYS" />
+            </HBox>
+
+            <Label fx:id="lblMensaje" styleClass="login-error" wrapText="true" minHeight="-Infinity" />
+
+            <Button onAction="#ingresar" defaultButton="true" maxWidth="Infinity"
+                    styleClass="btn-login" text="%login.ingresar" />
+            <Button onAction="#cerrar" cancelButton="true" maxWidth="Infinity"
+                    styleClass="btn-login-secundario" text="%login.cerrar" />
+         </VBox>
+      </VBox>
+
+      <Label text="Veterinaria · Java 21 + JavaFX" styleClass="login-pie" />
+   </VBox>
+</StackPane>

@@ -9,32 +9,8 @@ import java.sql.SQLException;
 
 public class CategoriaRepository extends AbstractJpaRepository<Categoria, Long>{
 
-    @Override
-    protected String getTableName() {
-        return "categoria";
-    }
-
-    @Override
-    protected String getPkColumn() {
-        return "id_categoria";
-    }
-
-    @Override
-    protected Categoria insert(Connection connection, Categoria entity) throws SQLException {
-        long id = executeInsertGetKey(connection,
-                "INSERT INTO categoria(nombre) VALUES(?)", entity.getNombre());
-        entity.setIdCategoria(id);
-        return entity;
-    }
-
-    @Override
-    protected Categoria updateRow(Connection connection, Categoria entity) throws SQLException {
-        executeUpdate(connection, "UPDATE categoria SET nombre=? WHERE id_categoria=?",
-                entity.getNombre(),
-                entity.getIdCategoria()
-        ); return entity;
-
-    }
+    @Override protected String getTableName() { return "categoria"; }
+    @Override protected String getPkColumn() { return "id_categoria"; }
 
     @Override
     protected Categoria mapRow(ResultSet rs) throws SQLException {
@@ -42,5 +18,21 @@ public class CategoriaRepository extends AbstractJpaRepository<Categoria, Long>{
                 .idCategoria(rs.getLong("id_categoria"))
                 .nombre(rs.getString("nombre"))
                 .build();
+    }
+
+    @Override
+    protected Categoria insert(Connection conn, Categoria e) throws SQLException {
+        long id = executeInsertGetKey(conn,
+                "INSERT INTO categoria(nombre) VALUES(?)",
+                e.getNombre());
+        e.setIdCategoria(id);
+        return e;
+    }
+    @Override
+    protected Categoria updateRow(Connection conn, Categoria e) throws SQLException {
+        executeUpdate(conn, "UPDATE categoria SET nombre=? WHERE id_categoria=?",
+                e.getNombre(),
+                e.getIdCategoria()
+        ); return e;
     }
 }

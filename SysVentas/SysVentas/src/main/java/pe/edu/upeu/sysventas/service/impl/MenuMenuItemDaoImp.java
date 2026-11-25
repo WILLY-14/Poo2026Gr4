@@ -10,7 +10,8 @@ public class MenuMenuItemDaoImp implements IMenuMenuItemDao {
     public List<MenuMenuItenTO> listaAccesos(String perfil, Properties idioma) {
         List<MenuMenuItenTO> lista = new ArrayList<>();
 
-        lista.add(new MenuMenuItenTO("miprincipal", "/view/login.fxml", idioma.getProperty("menu.nombre.principal"),
+        lista.add(new MenuMenuItenTO("miprincipal", "/view/login.fxml",
+                idioma.getProperty("menu.nombre.principal"),
                 idioma.getProperty("menuitem.nombre.salir"), "Salir", "C"));
 
         lista.add(new MenuMenuItenTO("miproducto", "/view/main_producto.fxml",
@@ -18,9 +19,13 @@ public class MenuMenuItemDaoImp implements IMenuMenuItemDao {
 
         lista.add(new MenuMenuItenTO("micliente", "/view/main_cliente.fxml",
                 "Venta", "Reg. Cliente", "Gestionar Cliente", "T"));
+        lista.add(new MenuMenuItenTO("miventa", "/view/main_venta.fxml",
+                "Venta", "Reg. Venta", "Gestionar Ventas", "T"));
 
         List<MenuMenuItenTO> accesoReal = new ArrayList<>();
+
         accesoReal.add(lista.get(0));
+
         switch (perfil) {
             case "Administrador":
                 accesoReal.add(lista.get(1)); // miproducto

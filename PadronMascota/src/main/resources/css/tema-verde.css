@@ -1,0 +1,14 @@
+/* Tema Verde: misma estructura, paleta verde hoja */
+.root {
+    -vet-primario: #2e8b57;
+    -vet-primario-oscuro: #1d5c39;
+    -vet-primario-suave: #dcf0e3;
+    -vet-acento: #e9a23b;
+    -vet-fondo: #eff5f0;
+    -vet-superficie-2: #f5f9f6;
+    -vet-borde: #d9e6dc;
+    -vet-texto: #1e2b22;
+    -vet-texto-suave: #5d7063;
+    -vet-sombra: rgba(25, 70, 40, 0.10);
+    -fx-base: #e8f1ea;
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.shape.SVGPath?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Pantalla CRUD: formulario a la izquierda, buscador y tabla a la derecha -->
+<BorderPane styleClass="pantalla" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.padronmascota.padronmascota.controlador.ProductoController">
+
+   <top>
+      <!-- Encabezado: igual en todas las pantallas -->
+      <HBox styleClass="encabezado">
+         <BorderPane.margin><Insets bottom="14.0" /></BorderPane.margin>
+         <StackPane styleClass="encabezado-icono">
+            <SVGPath content="M12 2 l9 5 v10 l-9 5 l-9 -5 V7 z M12 4.3 L5.6 7.8 L12 11.3 l6.4 -3.5 z M5 9.5 v6.3 l6 3.3 v-6.3 z M13 12.8 v6.3 l6 -3.3 V9.5 z" fill="WHITE" scaleX="1.05" scaleY="1.05" />
+         </StackPane>
+         <VBox alignment="CENTER_LEFT" spacing="1.0" HBox.hgrow="ALWAYS">
+            <Label styleClass="encabezado-titulo" text="%opcion.productos" />
+            <Label styleClass="encabezado-subtitulo" text="%sub.productos" />
+         </VBox>
+      </HBox>
+   </top>
+
+   <left>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-formulario">
+      <VBox spacing="10.0" prefWidth="360.0" styleClass="panel-formulario">
+         <padding>
+            <Insets bottom="18.0" left="18.0" right="18.0" top="20.0" />
+         </padding>
+         <Label fx:id="lblModo" styleClass="titulo" wrapText="true" minHeight="-Infinity" />
+         <GridPane hgap="8.0" vgap="9.0">
+            <columnConstraints>
+               <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label text="%comun.nombre" GridPane.rowIndex="0" />
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="%producto.categoria" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cboCategoria" maxWidth="Infinity" promptText="%comun.elegir" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="%comun.precioSoles" GridPane.rowIndex="2" />
+            <TextField fx:id="txtPrecio" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="%producto.stockMinimo" GridPane.rowIndex="3" />
+            <TextField fx:id="txtStockMinimo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </GridPane>
+         <Label text="%producto.ayudaStock" styleClass="texto-suave" wrapText="true" minHeight="-Infinity" />
+         <HBox spacing="8.0">
+            <Button onAction="#guardar" styleClass="btn, btn-exito" text="%comun.guardar" defaultButton="true" minWidth="-Infinity" />
+            <Button onAction="#nuevo" styleClass="btn, btn-secundario" text="%comun.nuevo" minWidth="-Infinity" />
+         </HBox>
+      </VBox>
+      </ScrollPane>
+   </left>
+
+   <center>
+      <VBox spacing="10.0" styleClass="panel-tabla">
+         <padding><Insets bottom="12.0" left="14.0" right="14.0" top="14.0" /></padding>
+         <BorderPane.margin>
+            <Insets left="14.0" />
+         </BorderPane.margin>
+         <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <TextField fx:id="txtBuscar" prefWidth="240.0" promptText="%producto.buscar" />
+            <ComboBox fx:id="cboFiltroCategoria" onAction="#buscar" prefWidth="140.0" />
+         </HBox>
+         <TableView fx:id="tabla" VBox.vgrow="ALWAYS" />
+         <Label fx:id="lblTotal" styleClass="texto-suave" />
+      </VBox>
+   </center>
+</BorderPane>

@@ -26,15 +26,19 @@ import java.util.Properties;
 import java.util.prefs.Preferences;
 
 @RequiredArgsConstructor
-public class MainguiController {
-    @FXML
-    BorderPane bp;
-    @FXML
-    MenuBar menuBar;
-    @FXML
-    MenuItem menuItem1, menuItem2;
+public class MainGuiController {
+
     @FXML
     TabPane tabPane;
+
+    @FXML
+    MenuItem menuItem1, menuItem2;
+
+    @FXML
+    BorderPane bp;
+
+    @FXML
+    MenuBar menuBar;
 
     private final IMenuMenuItemDao mmiDao;
     private Parent parent;
@@ -68,11 +72,11 @@ public class MainguiController {
         bp.setCenter(tabPane);
     }
 
+
     private List<MenuMenuItenTO> listaAccesos() {
         myresources = util.detectLanguage(userPrefs.get("IDIOMAX", "es"));
         return mmiDao.listaAccesos(SessionManager.getInstance().getUserPerfil(), myresources);
     }
-
     private void cambiarEstilo() {
         String estiloSeleccionado = comboBoxEstilo.getSelectionModel().getSelectedItem();
         Scene escena = bp.getScene();
@@ -99,8 +103,6 @@ public class MainguiController {
         }
         graficarMenus();
     }
-
-
     private void graficarMenus() {
         lista = listaAccesos();
         int[] mmi = mmiDao.contarMenuMunuItem(lista);
@@ -158,6 +160,20 @@ public class MainguiController {
             menuConfig = mmiDao.accesosAutorizados(lista);
         }
 
+        public void handle(ActionEvent e){
+            String id=((MenuItem)e.getSource()).getId();
+            if(menuConfig.containsKey(id)){
+                String[] items=menuConfig.get(id);
+                if(items[2].equals("C")){
+                    //Platform.exit();
+                    //System.exit(0);
+                    redireccionar(items[0]);
+                }else{
+                    abrirTabPaneFXML(items[0],items[1]);
+                }
+            }
+        }
+
         private void redireccionar(String fxmlPath) {
             tabPane.getTabs().clear();
             try {
@@ -178,20 +194,6 @@ public class MainguiController {
         }
 
 
-        public void handle(ActionEvent e){
-            String id=((MenuItem)e.getSource()).getId();
-            if(menuConfig.containsKey(id)){
-                String[] items=menuConfig.get(id);
-                if(items[2].equals("C")){
-                    //Platform.exit();
-                    //System.exit(0);
-                    redireccionar(items[0]);
-                }else{
-                    abrirTabPaneFXML(items[0],items[1]);
-                }
-            }
-        }
-
         private void abrirTabPaneFXML(String fxmlPath, String tittle){
             try {
                 AppContext context = AppContext.getInstance();
@@ -202,7 +204,6 @@ public class MainguiController {
                 ScrollPane scrollPane = new ScrollPane(root);
                 scrollPane.setFitToWidth(true);
                 scrollPane.setFitToHeight(true);
-
                 Tab newTab = new Tab(tittle, scrollPane);
                 tabPane.getTabs().clear();
                 tabPane.getTabs().add(newTab);

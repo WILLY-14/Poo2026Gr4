@@ -53,7 +53,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
         <!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -80,11 +79,13 @@
             <artifactId>expressly</artifactId>
             <version>5.0.0</version>
         </dependency>
+
         <!-- Source: https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.4.240</version>
+
         </dependency>
         <!-- ===== HIKARICP — pool de conexiones ===== -->
         <dependency>
@@ -99,6 +100,18 @@
             <version>1.4.14</version>
         </dependency>
 
+        <!-- ===== JSON / HTTP ===== -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.18.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -111,13 +124,16 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
+
                     <annotationProcessorPaths>
+                        <!-- Lombok Annotation Processor -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>1.18.46</version>
                         </path>
                     </annotationProcessorPaths>
+
                 </configuration>
             </plugin>
             <plugin>

@@ -1,0 +1,101 @@
+package pe.edu.upeu.sysventas.controller;
+
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import lombok.RequiredArgsConstructor;
+import pe.edu.upeu.sysventas.SysVentas;
+import pe.edu.upeu.sysventas.components.StageManager;
+import pe.edu.upeu.sysventas.components.Toast;
+import pe.edu.upeu.sysventas.config.AppContext;
+import pe.edu.upeu.sysventas.config.DatabaseConfig;
+import pe.edu.upeu.sysventas.dto.SessionManager;
+import pe.edu.upeu.sysventas.model.Usuario;
+import pe.edu.upeu.sysventas.service.IUsuarioService;
+
+@RequiredArgsConstructor
+public class LoginController {
+
+    final private IUsuarioService us;
+
+    @FXML
+    TextField txtUsuario;
+
+    @FXML
+    PasswordField txtClave;
+
+    @FXML
+    public void login(ActionEvent e){
+       if (txtUsuario.getText().isBlank() || txtClave.getText().isBlank()) {
+           mensaje(e, "Ingrese usuario y clave");
+           return;
+       }
+       us.loginUsuario(txtUsuario.getText(), txtClave.getText())
+               .ifPresentOrElse(
+                       usuario ->{
+                           abrirPantalla(e,usuario);
+                       },
+                       () -> {
+                           mensaje(e,"Error en las credenciales...Intenete nuevamente");
+                       }
+               );
+
+    }
+
+
+    public void mensaje(ActionEvent e, String msg){
+        Stage stage=(Stage) ((Node)e.getSource()).getScene().getWindow();
+        double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;
+        Toast.showToast(stage, msg, 2000, w, h);
+    }
+
+    @FXML
+    public void logout(){
+        Platform.exit();
+        System.exit(0);
+        DatabaseConfig.shutdown();
+    }
+
+    public void abrirPantalla(ActionEvent e, Usuario usuario){
+
+        SessionManager.getInstance().setUserId(usuario.getIdUsuario());
+        SessionManager.getInstance().setUserName(usuario.getUsuario());
+        SessionManager.getInstance().setUserPerfil(usuario.getIdPerfil().getNombre());
+
+        try {
+            Screen screen=Screen.getPrimary();
+            Rectangle2D rectangle2D=screen.getVisualBounds();
+            AppContext appContext=AppContext.getInstance();
+            FXMLLoader fxmlLoader = new FXMLLoader(SysVentas.class.getResource("/view/maingui.fxml"));
+            fxmlLoader.setControllerFactory(appContext::getBean);
+            Scene scene = new Scene(fxmlLoader.load(), rectangle2D.getWidth(), rectangle2D.getHeight());
+            scene.getStylesheets().add(SysVentas.class.getResource("/css/style.css").toExternalForm());
+            Stage stage=(Stage) ((Node)e.getSource()).getScene().getWindow();
+
+            StageManager.setPrimaryStage(stage);
+
+            stage.setTitle("Hello!");
+            stage.setScene(scene);
+            stage.setX(rectangle2D.getMinX());
+            stage.setY(rectangle2D.getMinY());
+            stage.setResizable(true);
+            stage.show();
+
+        }catch (Exception ex){ ex.printStackTrace(); }
+
+    }
+
+
+
+
+
+
+}

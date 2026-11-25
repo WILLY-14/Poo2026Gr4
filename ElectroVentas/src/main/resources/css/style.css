@@ -1,0 +1,127 @@
+/* =====================================================
+   TEMA MODERNO - ElectroVentas
+   ===================================================== */
+.root {
+    -color-primary: #52707e;
+    -color-primary-dark: #425b68;
+    -color-navy: #33414d;
+    -color-bg: #f4f2ee;
+    -color-card: #ffffff;
+    -color-border: #d8d3ca;
+    -color-text: #2f3a44;
+    -color-muted: #76808a;
+    -fx-base: #ffffff;
+    -fx-background-color: -color-bg;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: -color-text;
+    -fx-focus-color: -color-primary;
+    -fx-faint-focus-color: transparent;
+}
+
+.label { -fx-text-fill: -color-text; }
+
+/* ---------- Barra de menú ---------- */
+.menu-bar { -fx-background-color: -color-navy; -fx-padding: 2 6 2 6; }
+.menu-bar .label { -fx-text-fill: #ece8e1; -fx-font-weight: bold; }
+.menu-bar .menu:hover, .menu-bar .menu:showing { -fx-background-color: -color-primary; }
+.context-menu { -fx-background-color: white; -fx-background-radius: 6; -fx-effect: dropshadow(gaussian, rgba(51,65,77,0.25), 12, 0, 0, 3); }
+.menu-item:focused { -fx-background-color: -color-primary; }
+.menu-item:focused .label { -fx-text-fill: white; }
+
+/* ---------- Pestañas ---------- */
+.tab-pane { -fx-background-color: -color-bg; }
+.tab-pane > .tab-header-area > .tab-header-background { -fx-background-color: #e6e2da; }
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #e6e2da; -fx-background-radius: 8 8 0 0; -fx-padding: 6 16 6 16;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:selected { -fx-background-color: white; }
+.tab-pane > .tab-header-area > .headers-region > .tab .tab-label { -fx-text-fill: -color-muted; -fx-font-weight: bold; }
+.tab-pane > .tab-header-area > .headers-region > .tab:selected .tab-label { -fx-text-fill: -color-primary; }
+.tab-pane > .tab-content-area { -fx-background-color: -color-bg; }
+
+/* ---------- Campos de texto ---------- */
+.text-field, .password-field, .combo-box-base, .date-picker .text-field {
+    -fx-background-color: white;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10 6 10;
+}
+.text-field:focused, .password-field:focused, .combo-box-base:focused {
+    -fx-border-color: -color-primary; -fx-border-width: 1.5;
+}
+.text-field:disabled, .text-field:readonly { -fx-background-color: #faf8f5; -fx-text-fill: -color-muted; }
+.combo-box-base { -fx-padding: 2 4 2 4; }
+
+/* ---------- Botones ---------- */
+.button, .btn {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(82,112,126,0.25), 6, 0, 0, 2);
+}
+.button:hover, .btn:hover { -fx-background-color: -color-primary-dark; }
+.button:pressed, .btn:pressed { -fx-background-color: #374f5b; }
+.button:disabled, .btn:disabled { -fx-background-color: #d8d3ca; -fx-text-fill: #faf8f5; -fx-effect: none; }
+.btn-primary { -fx-background-color: -color-primary; }
+.btn-success { -fx-background-color: #6b9580; -fx-effect: dropshadow(gaussian, rgba(107,149,128,0.25), 6, 0, 0, 2); }
+.btn-success:hover { -fx-background-color: #587f6b; }
+.btn-danger { -fx-background-color: #b9706b; -fx-effect: dropshadow(gaussian, rgba(185,112,107,0.25), 6, 0, 0, 2); }
+.btn-danger:hover { -fx-background-color: #a25d58; }
+.btn-warning { -fx-background-color: #cfab6c; -fx-text-fill: #2f3a44; -fx-effect: none; }
+.btn-warning:hover { -fx-background-color: #b99256; }
+.btn-secondary { -fx-background-color: #e6e2da; -fx-text-fill: #2f3a44; -fx-text-fill: -color-text; -fx-effect: none; }
+.btn-secondary:hover { -fx-background-color: #d8d3ca; }
+
+/* ---------- Tablas ---------- */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+.table-view .column-header-background { -fx-background-color: -color-navy; -fx-background-radius: 8 8 0 0; }
+.table-view .column-header, .table-view .filler { -fx-background-color: transparent; -fx-size: 36; -fx-border-color: transparent; }
+.table-view .column-header .label { -fx-text-fill: #f4f2ee; -fx-font-weight: bold; -fx-alignment: center-left; }
+.table-row-cell { -fx-background-color: white; -fx-cell-size: 34; -fx-border-color: transparent; }
+.table-row-cell:odd { -fx-background-color: #faf8f5; }
+.table-row-cell:hover { -fx-background-color: #e8eef0; }
+.table-row-cell:selected { -fx-background-color: #d3e0e5; }
+.table-row-cell:selected .text { -fx-fill: -color-text; }
+.table-cell { -fx-padding: 0 8 0 8; -fx-alignment: center-left; }
+
+/* ---------- Scroll ---------- */
+.scroll-bar { -fx-background-color: transparent; }
+.scroll-bar .thumb { -fx-background-color: #b5b0a6; -fx-background-radius: 6; }
+.scroll-bar .increment-button, .scroll-bar .decrement-button { -fx-padding: 0; }
+
+/* ---------- Tooltips / alertas ---------- */
+.tooltip { -fx-background-color: -color-navy; -fx-text-fill: white; -fx-background-radius: 6; }
+.dialog-pane { -fx-background-color: white; }
+.dialog-pane > .button-bar > .container { -fx-background-color: #faf8f5; }
+
+/* ---------- Login ---------- */
+.login-root { -fx-background-color: linear-gradient(to bottom right, #33414d, #5d7886); }
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 32 36 32 36;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 30, 0, 0, 10);
+}
+.login-title { -fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -color-navy; }
+.login-sub { -fx-text-fill: -color-muted; }
+.field-label { -fx-font-weight: bold; -fx-text-fill: -color-muted; -fx-font-size: 12px; }
+
+/* ---------- Tarjetas y encabezados reutilizables ---------- */
+.card {
+    -fx-background-color: -color-card;
+    -fx-background-radius: 10;
+    -fx-padding: 12 14 12 14;
+    -fx-effect: dropshadow(gaussian, rgba(51,65,77,0.08), 10, 0, 0, 2);
+}
+.page-title { -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: -color-navy; }
+.total-field { -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #4d7a63; }

@@ -11,14 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class MarcaServiceImp extends CrudGenericoServiceImp<Marca, Long> implements IMarcaService {
+public class MarcaServiceImp extends CrudGenericoServiceImp<Marca, Long>
+        implements IMarcaService {
+
     private final MarcaRepository marcaRepository;
     @Override
     protected ICrudGenericoRepository<Marca, Long> getRepo() {
         return marcaRepository;
     }
 
-    @Override
     public List<ComboBoxOption> listarCombobox() {
 
         List<ComboBoxOption> listar = new ArrayList<>();
@@ -30,4 +31,5 @@ public class MarcaServiceImp extends CrudGenericoServiceImp<Marca, Long> impleme
         }
         return listar;
     }
+
 }

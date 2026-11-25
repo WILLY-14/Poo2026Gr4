@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="pe.edu.upeu.sysventas.controller.ClienteController" spacing="12" prefWidth="950" style="-fx-padding:24;-fx-background-color:#f4f2ee;">
+ <Label text="GESTIÓN DE CLIENTES" style="-fx-font-size:24;-fx-font-weight:bold;-fx-text-fill:#33414d;"/>
+ <GridPane hgap="12" vgap="10">
+  <Label text="Documento *" GridPane.rowIndex="0" GridPane.columnIndex="0"/><TextField fx:id="txtDocumento" promptText="DNI o RUC" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+  <Label text="Tipo *" GridPane.rowIndex="0" GridPane.columnIndex="1"/><ComboBox fx:id="cbTipo" prefWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+  <Label text="Nombre / Razón social *" GridPane.rowIndex="0" GridPane.columnIndex="2"/><TextField fx:id="txtNombres" prefWidth="250" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+  <Label text="Representante legal" GridPane.rowIndex="2" GridPane.columnIndex="0"/><TextField fx:id="txtRepresentante" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+  <Label text="Dirección" GridPane.rowIndex="2" GridPane.columnIndex="1"/><TextField fx:id="txtDireccion" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="2" prefWidth="350"/>
+ </GridPane>
+ <HBox spacing="10"><Button text="Guardar" onAction="#guardar" style=""/><Button text="Nuevo / Limpiar" onAction="#limpiar"/><Button text="Eliminar seleccionado" onAction="#eliminar"/></HBox>
+ <Label fx:id="lblEstado" text="Seleccione una fila para editar su información"/>
+ <TextField fx:id="txtBuscar" promptText="Buscar por nombre o documento..."/>
+ <TableView fx:id="tabla" prefHeight="400" VBox.vgrow="ALWAYS"><columns>
+ <TableColumn fx:id="colDocumento" text="Documento" prefWidth="170"/><TableColumn fx:id="colNombre" text="Nombre / Razón social" prefWidth="300"/><TableColumn fx:id="colTipo" text="Tipo" prefWidth="90"/><TableColumn fx:id="colRepresentante" text="Representante legal" prefWidth="220"/><TableColumn fx:id="colDireccion" text="Dirección" prefWidth="250"/>
+ </columns></TableView>
+ <HBox spacing="8" alignment="CENTER_LEFT">
+  <Button text="«" onAction="#primeraPagina" styleClass="btn-secondary"/><Button text="‹ Anterior" onAction="#paginaAnterior" styleClass="btn-secondary"/>
+  <Label fx:id="lblPagina" text="Página 1 de 1"/>
+  <Button text="Siguiente ›" onAction="#paginaSiguiente" styleClass="btn-secondary"/><Button text="»" onAction="#ultimaPagina" styleClass="btn-secondary"/>
+  <Label text="Filas por página:"/><ComboBox fx:id="cbPorPagina" prefWidth="80"/>
+ </HBox>
+</VBox>

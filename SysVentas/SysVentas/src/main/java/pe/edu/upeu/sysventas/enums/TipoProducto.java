@@ -10,6 +10,11 @@ public enum TipoProducto {
 
     String descripcion;
     TipoProducto(String descripcion){
-        this.descripcion=descripcion;
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return descripcion;
     }
 }

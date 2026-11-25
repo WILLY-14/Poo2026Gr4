@@ -8,15 +8,15 @@ module pe.edu.upeu.sysventas {
     requires jakarta.validation;
 
     requires java.sql;
-    requires org.slf4j;
     requires java.naming;
+    requires org.slf4j;
     requires com.zaxxer.hikari;
     requires java.prefs;
+    requires org.jsoup;
+
 
     opens pe.edu.upeu.sysventas to javafx.fxml;
     opens pe.edu.upeu.sysventas.controller to javafx.fxml;
-
-    exports pe.edu.upeu.sysventas.model;
     opens pe.edu.upeu.sysventas.model;
     exports pe.edu.upeu.sysventas;
 }

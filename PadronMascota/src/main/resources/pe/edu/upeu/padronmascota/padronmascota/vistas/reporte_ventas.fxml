@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.shape.SVGPath?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- "Reporte de ventas pagadas" del Excel: las Anuladas no cuentan -->
+<VBox spacing="14.0" styleClass="pantalla" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.padronmascota.padronmascota.controlador.ReporteVentasController">
+   <!-- Encabezado: igual en todas las pantallas -->
+   <HBox styleClass="encabezado">
+      <StackPane styleClass="encabezado-icono">
+         <SVGPath content="M3 20 h18 v2 H3 z M5 11 h3 v7 H5 z M10.5 6 h3 v12 h-3 z M16 13 h3 v5 h-3 z" fill="WHITE" scaleX="1.05" scaleY="1.05" />
+      </StackPane>
+      <VBox alignment="CENTER_LEFT" spacing="1.0" HBox.hgrow="ALWAYS">
+         <Label styleClass="encabezado-titulo" text="%opcion.reporteVentas" />
+         <Label styleClass="encabezado-subtitulo" text="%sub.reporteVentas" />
+      </VBox>
+      <Button onAction="#actualizar" styleClass="btn, btn-primario" text="%resumen.actualizar" />
+   </HBox>
+   <VBox styleClass="panel-tabla" VBox.vgrow="ALWAYS">
+      <padding><Insets bottom="12.0" left="14.0" right="14.0" top="10.0" /></padding>
+   <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+      <Tab text="%reporte.porAnio">
+         <VBox spacing="8.0">
+            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+            <TableView fx:id="tblAnio" VBox.vgrow="ALWAYS" />
+         </VBox>
+      </Tab>
+      <Tab text="%reporte.porMes">
+         <VBox spacing="8.0">
+            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+            <HBox alignment="CENTER_LEFT" spacing="8.0">
+               <Label text="%reporte.anio" />
+               <ComboBox fx:id="cboAnio" onAction="#cargarMeses" prefWidth="100.0" />
+               <Label fx:id="lblTotalAnio" styleClass="texto-suave" />
+            </HBox>
+            <HBox spacing="10.0" VBox.vgrow="ALWAYS">
+               <TableView fx:id="tblMes" prefWidth="330.0" />
+               <BarChart fx:id="graficoMes" legendVisible="false" HBox.hgrow="ALWAYS">
+                  <xAxis><CategoryAxis /></xAxis>
+                  <yAxis><NumberAxis /></yAxis>
+               </BarChart>
+            </HBox>
+         </VBox>
+      </Tab>
+      <Tab text="%reporte.porDia">
+         <VBox spacing="8.0">
+            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+            <TableView fx:id="tblDia" VBox.vgrow="ALWAYS" />
+         </VBox>
+      </Tab>
+      <Tab text="%reporte.porRango">
+         <VBox spacing="8.0">
+            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+            <HBox alignment="CENTER_LEFT" spacing="8.0">
+               <Label text="%reporte.desde" />
+               <DatePicker fx:id="dtpDesde" prefWidth="130.0" />
+               <Label text="%reporte.hasta" />
+               <DatePicker fx:id="dtpHasta" prefWidth="130.0" />
+               <Label text="%venta.metodoPago" />
+               <ComboBox fx:id="cboMetodo" prefWidth="130.0" />
+               <Button onAction="#calcularRango" styleClass="btn, btn-primario" text="%reporte.calcular" minWidth="-Infinity" />
+            </HBox>
+            <Label fx:id="lblRango" styleClass="total-venta" />
+            <TableView fx:id="tblRango" VBox.vgrow="ALWAYS" />
+         </VBox>
+      </Tab>
+   </TabPane>
+   </VBox>
+</VBox>

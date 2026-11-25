@@ -13,17 +13,16 @@ import java.io.IOException;
 public class SysVentas extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        AppContext appContext=AppContext.getInstance();
         Screen screen=Screen.getPrimary();
+        Rectangle2D rectangle2D=screen.getVisualBounds();
+        AppContext appContext=AppContext.getInstance();
         FXMLLoader fxmlLoader = new FXMLLoader(SysVentas.class.getResource("/view/login.fxml"));
         fxmlLoader.setControllerFactory(appContext::getBean);
-        Rectangle2D dimension=screen.getBounds();
-
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-        stage.setTitle("SysVentas Login!");
-        stage.setScene(scene);
+        scene.getStylesheets().add(SysVentas.class.getResource("/css/style.css").toExternalForm());
+        stage.setTitle("Hello!");
         stage.setResizable(false);
+        stage.setScene(scene);
         stage.show();
     }
 }

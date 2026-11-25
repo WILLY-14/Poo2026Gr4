@@ -1,14 +1,16 @@
 package pe.edu.upeu.sysventas.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-@Builder
 public class UnidMedida {
-    Long idUnidad;
-    String nombreMedida;
 
+    private Long idUnidad;
+    private String nombreMedida;
 }

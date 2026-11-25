@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.shape.SVGPath?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Izquierda: el documento que se está armando (cabecera + líneas). Derecha: el historial -->
+<BorderPane styleClass="pantalla" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.padronmascota.padronmascota.controlador.AtencionController">
+
+   <top>
+      <!-- Encabezado: igual en todas las pantallas -->
+      <HBox styleClass="encabezado">
+         <BorderPane.margin><Insets bottom="14.0" /></BorderPane.margin>
+         <StackPane styleClass="encabezado-icono">
+            <SVGPath content="M9.5 3 h5 v6.5 H21 v5 h-6.5 V21 h-5 v-6.5 H3 v-5 h6.5 z" fill="WHITE" scaleX="1.05" scaleY="1.05" />
+         </StackPane>
+         <VBox alignment="CENTER_LEFT" spacing="1.0" HBox.hgrow="ALWAYS">
+            <Label styleClass="encabezado-titulo" text="%opcion.atenciones" />
+            <Label styleClass="encabezado-subtitulo" text="%sub.atenciones" />
+         </VBox>
+      </HBox>
+   </top>
+
+   <left>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-formulario">
+      <VBox spacing="9.0" prefWidth="470.0" styleClass="panel-formulario">
+         <padding>
+            <Insets bottom="18.0" left="18.0" right="18.0" top="20.0" />
+         </padding>
+         <Label styleClass="titulo" text="%atencion.nueva" />
+         <GridPane hgap="8.0" vgap="8.0">
+            <columnConstraints>
+               <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label text="%atencion.mascota" GridPane.rowIndex="0" />
+            <TextField fx:id="txtMascota" maxWidth="Infinity" promptText="%cita.mascotaPrompt2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="%atencion.veterinario" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cboVeterinario" maxWidth="Infinity" promptText="%comun.elegir" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="%atencion.fecha" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dtpFecha" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="%atencion.motivo" GridPane.rowIndex="3" />
+            <TextField fx:id="txtMotivo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="%atencion.cita" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cboCita" maxWidth="Infinity" promptText="%atencion.sinCita" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <!-- Servicio: los registrados en Inventario > Servicios; al elegirlo se pone su precio -->
+            <Label text="%atencion.servicio" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cboServicio" maxWidth="Infinity" promptText="%atencion.servicioPrompt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="%atencion.precioConsulta" GridPane.rowIndex="6" />
+            <TextField fx:id="txtPrecioConsulta" maxWidth="160.0" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         </GridPane>
+         <Separator />
+         <GridPane hgap="8.0" vgap="8.0">
+            <columnConstraints>
+               <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label text="%atencion.insumo" GridPane.rowIndex="0" />
+            <TextField fx:id="txtProducto" maxWidth="Infinity" promptText="%atencion.insumoPrompt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="%comun.cantidad" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCantidad" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </GridPane>
+         <Button onAction="#agregar" styleClass="btn, btn-primario" text="%comun.agregarLinea" minWidth="-Infinity" />
+         <TableView fx:id="tblLineas" prefHeight="170.0" VBox.vgrow="ALWAYS" />
+         <Label text="%atencion.ayudaInsumos" styleClass="texto-suave" wrapText="true" minHeight="-Infinity" />
+         <HBox spacing="8.0">
+            <Button onAction="#guardar" styleClass="btn, btn-exito" text="%atencion.guardar" minWidth="-Infinity" />
+            <Button onAction="#nuevo" styleClass="btn, btn-secundario" text="%comun.limpiar" minWidth="-Infinity" />
+         </HBox>
+      </VBox>
+      </ScrollPane>
+   </left>
+
+   <center>
+      <VBox spacing="10.0" styleClass="panel-tabla">
+         <padding><Insets bottom="12.0" left="14.0" right="14.0" top="14.0" /></padding>
+         <BorderPane.margin>
+            <Insets left="14.0" />
+         </BorderPane.margin>
+         <Label styleClass="titulo" text="%atencion.historial" />
+         <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <TextField fx:id="txtBuscar" prefWidth="240.0" promptText="%atencion.buscar" />
+         </HBox>
+         <TableView fx:id="tabla" VBox.vgrow="ALWAYS" />
+         <Label fx:id="lblTotal" styleClass="texto-suave" />
+      </VBox>
+   </center>
+</BorderPane>

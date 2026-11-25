@@ -1,6 +1,5 @@
 package pe.edu.upeu.sysventas.config;
 
-
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
@@ -53,7 +52,9 @@ public final class DatabaseConfig {
         HikariDataSource ds = createDataSource(url, props);
         try {
             if (Boolean.parseBoolean(props.getProperty("db.ddl.auto", "true"))) {
-                runScript(ds, props.getProperty("db.ddl.script", DEFAULT_SCRIPT));
+                for (String script : props.getProperty("db.ddl.script", DEFAULT_SCRIPT).split(",")) {
+                    runScript(ds, script.trim());
+                }
             }
         } catch (RuntimeException e) {
             ds.close();

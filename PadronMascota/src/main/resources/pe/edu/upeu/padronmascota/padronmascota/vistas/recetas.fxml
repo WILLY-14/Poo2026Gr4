@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.shape.SVGPath?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Izquierda: el documento que se está armando (cabecera + líneas). Derecha: el historial -->
+<BorderPane styleClass="pantalla" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.padronmascota.padronmascota.controlador.RecetaController">
+
+   <top>
+      <!-- Encabezado: igual en todas las pantallas -->
+      <HBox styleClass="encabezado">
+         <BorderPane.margin><Insets bottom="14.0" /></BorderPane.margin>
+         <StackPane styleClass="encabezado-icono">
+            <SVGPath content="M6 2 h8 l6 6 v14 H6 z M13 3.5 V9 h5.5 M9 13 h8 v1.6 H9 z M9 16.5 h8 v1.6 H9 z" fill="WHITE" scaleX="1.05" scaleY="1.05" />
+         </StackPane>
+         <VBox alignment="CENTER_LEFT" spacing="1.0" HBox.hgrow="ALWAYS">
+            <Label styleClass="encabezado-titulo" text="%opcion.recetas" />
+            <Label styleClass="encabezado-subtitulo" text="%sub.recetas" />
+         </VBox>
+      </HBox>
+   </top>
+
+   <left>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-formulario">
+      <VBox spacing="9.0" prefWidth="470.0" styleClass="panel-formulario">
+         <padding>
+            <Insets bottom="18.0" left="18.0" right="18.0" top="20.0" />
+         </padding>
+         <Label styleClass="titulo" text="%receta.nueva" />
+         <GridPane hgap="8.0" vgap="8.0">
+            <columnConstraints>
+               <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label text="%atencion.mascota" GridPane.rowIndex="0" />
+            <TextField fx:id="txtMascota" maxWidth="Infinity" promptText="%cita.mascotaPrompt2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <!-- Las atenciones de la mascota escrita; se elige sola la más reciente -->
+            <Label text="%receta.atencion" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cboAtencion" maxWidth="Infinity" promptText="%receta.atencionVacia" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="%receta.fecha" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dtpFecha" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="%receta.indicaciones" GridPane.rowIndex="3" />
+            <TextArea fx:id="txtIndicaciones" prefRowCount="2" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </GridPane>
+         <Separator />
+         <GridPane hgap="8.0" vgap="8.0">
+            <columnConstraints>
+               <ColumnConstraints minWidth="128.0" prefWidth="128.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label text="%receta.medicamento" GridPane.rowIndex="0" />
+            <TextField fx:id="txtProducto" maxWidth="Infinity" promptText="%receta.medicamentoLibre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="%receta.dosis" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDosis" promptText="1 tableta" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="%receta.frecuencia" GridPane.rowIndex="2" />
+            <TextField fx:id="txtFrecuencia" promptText="Cada 8 horas" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="%receta.dias" GridPane.rowIndex="3" />
+            <TextField fx:id="txtDias" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </GridPane>
+         <Button onAction="#agregar" styleClass="btn, btn-primario" text="%comun.agregarLinea" minWidth="-Infinity" />
+         <TableView fx:id="tblLineas" prefHeight="170.0" VBox.vgrow="ALWAYS" />
+         <Label text="%receta.ayuda" styleClass="texto-suave" wrapText="true" minHeight="-Infinity" />
+         <HBox spacing="8.0">
+            <Button onAction="#guardar" styleClass="btn, btn-exito" text="%receta.guardar" minWidth="-Infinity" />
+            <Button onAction="#nuevo" styleClass="btn, btn-secundario" text="%comun.limpiar" minWidth="-Infinity" />
+         </HBox>
+      </VBox>
+      </ScrollPane>
+   </left>
+
+   <center>
+      <VBox spacing="10.0" styleClass="panel-tabla">
+         <padding><Insets bottom="12.0" left="14.0" right="14.0" top="14.0" /></padding>
+         <BorderPane.margin>
+            <Insets left="14.0" />
+         </BorderPane.margin>
+         <Label styleClass="titulo" text="%receta.historial" />
+         <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <TextField fx:id="txtBuscar" prefWidth="240.0" promptText="%receta.buscar" />
+         </HBox>
+         <TableView fx:id="tabla" VBox.vgrow="ALWAYS" />
+         <Label fx:id="lblTotal" styleClass="texto-suave" />
+      </VBox>
+   </center>
+</BorderPane>

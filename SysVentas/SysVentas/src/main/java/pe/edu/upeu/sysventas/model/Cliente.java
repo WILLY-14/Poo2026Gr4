@@ -1,14 +1,20 @@
 package pe.edu.upeu.sysventas.model;
 
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import pe.edu.upeu.sysventas.enums.TipoDocumento;
-@Getter
-@Setter
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cliente {
-    String dniruc;
-    String nombres;
-    String repLegal;
-    String direccion;
-    TipoDocumento tipoDocumento;
+    private String dniruc;
+    private String nombres;
+    private TipoDocumento tipoDocumento;
+    private String repLegal;
+    private String direccion;
 }

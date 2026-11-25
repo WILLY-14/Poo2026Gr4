@@ -1,0 +1,14 @@
+/* Tema Azul: misma estructura, paleta azul océano */
+.root {
+    -vet-primario: #2563a8;
+    -vet-primario-oscuro: #183f6e;
+    -vet-primario-suave: #dce8f7;
+    -vet-acento: #f29d52;
+    -vet-fondo: #eef3f9;
+    -vet-superficie-2: #f5f8fc;
+    -vet-borde: #d8e2ee;
+    -vet-texto: #1c2733;
+    -vet-texto-suave: #5b6b7d;
+    -vet-sombra: rgba(20, 50, 90, 0.10);
+    -fx-base: #e8eef6;
+}
